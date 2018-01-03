@@ -1,0 +1,10 @@
+<ol>
+	<% @tests.each do |test| %>
+		<li>
+			<%= test.title %>
+			<a href="/test/edit/<%= test.id%>">Edit</a>
+			<a href="/test/delete/<%= test.id%>" method="delete">Delete</a>
+		</li>
+	<%end%>
+	
+</ol>

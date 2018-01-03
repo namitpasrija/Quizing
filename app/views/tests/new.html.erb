@@ -1,0 +1,14 @@
+<%= form_for @test, url: {action: "create"} do |f| %>
+	Title: <%= f.text_field :title %><br/>
+	Description: <%= f.text_area :description %><br/>
+	Duration(In minutes): <%= f.number_field :duration %><br/>
+	Start Time: <%= f.datetime_select :startTime %><br/>
+	End Time: <%= f.datetime_select :endTime %><br/>
+	Conducted By: <%= f.text_field :conductedBy%><br/>
+	Fee: <%= f.number_field :fee %><br/>
+	Prize:<%= f.text_field :prize %><br/>
+	Instructions:<%= f.text_area :instructions %><br/>
+	Password:<%= f.password_field :password %><br/>
+	Test Type:<%= f.text_field :tType %><br/>
+	<%= f.submit%>
+<%end%>

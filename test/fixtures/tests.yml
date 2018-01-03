@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  description: MyText
+  duration: 1
+  startTime: 2017-12-02 15:46:19
+  endTime: 2017-12-02 15:46:19
+  conductedBy: MyText
+  user_id: 
+  fee: 1
+  prize: MyText
+  instructions: MyText
+  password: MyText
+  tType: MyText
+
+two:
+  title: MyText
+  description: MyText
+  duration: 1
+  startTime: 2017-12-02 15:46:19
+  endTime: 2017-12-02 15:46:19
+  conductedBy: MyText
+  user_id: 
+  fee: 1
+  prize: MyText
+  instructions: MyText
+  password: MyText
+  tType: MyText

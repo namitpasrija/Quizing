@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9" style="padding-top: 30px; padding-left: 50px;background: #f4f3f3;">
+      <h4>Ongoing Quizes</h4>
+      <hr style="border: 1px dotted black;">
+	<div class="row">
+
+    <% @ongoingtests.each do |test| %>
+     <div class="col-sm-4"  style="margin-bottom:10px;">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= test.title %></h5>
+          <p class="card-text"><%= test.description %></p>
+          <a href="/test/environment/?testid=<%= test.id%>" class="btn btn-success" style="background: #9c0;border: #9c0;">Start Now</a>
+        </div>
+         <div class="card-footer">
+        <small class="text-muted">Fee</small>
+      </div>
+      </div>
+    </div>
+  <%end%>
+  
+</div>	
+<br/><br/>
+	 <h4>Upcoming Quizes</h4>
+	 <hr style="border: 1px dotted black;">
+	<div class="row">
+     <% @upcomingtests.each do |test| %>
+     <div class="col-sm-4"  style="margin-bottom:10px;">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= test.title %></h5>
+          <p class="card-text"><%= test.description %></p>
+          <a href="#" class="btn btn-success" style="background: #9c0;border: #9c0;">Start Now</a>
+        </div>
+         <div class="card-footer">
+        <small class="text-muted">Fee</small>
+      </div>
+      </div>
+    </div>
+  <%end%>
+  
+  
+  </div>		
+
+
+    </div>
+
+   <div class="col-sm-3" style="padding-top: 30px;background: #e5e7e8;padding-left:20px;">
+   	<h6><b>Whats New</b></h6>
+      <hr style="border-top: dotted 1px;" />
+      <ul type="none" style="padding:5px;color:#4c9cdf;">
+      	<li>Jee Main 20 18 Application Form</li>
+      	<li>PMT 2018 Application Form</li>
+      	<li>Mains 2018 Corrections</li>
+      	<li>SSC Exam Schedule</li>
+      </ul>
+
+      <h6><b>Regitered Quizes</b></h6>
+      <hr style="border-top: dotted 1px;" />
+      <ul type="none" style="padding:5px;color:#4c9cdf;">
+      	<li>First Challenge</li>
+      	<li>Second Challenge</li>
+      	<li>Third Challenge</li>
+      	<li>Fourth Challenge</li>
+      	<li>Fifth Challenge</li>
+      </ul>
+
+       <h6><b>Quiz Type</b></h6>
+      <hr style="border-top: dotted 1px;" />
+	  <label class="custom-control custom-checkbox">
+	  	<input type="checkbox" class="custom-control-input">
+	 	 <span class="custom-control-indicator"></span>
+	  	<span class="custom-control-description">IIT</span>
+	</label>
+		<label class="custom-control custom-checkbox">
+	  	<input type="checkbox" class="custom-control-input">
+	 	 <span class="custom-control-indicator"></span>
+	  	<span class="custom-control-description">AIIMS</span>
+	</label>
+	<label class="custom-control custom-checkbox">
+	  	<input type="checkbox" class="custom-control-input">
+	 	 <span class="custom-control-indicator"></span>
+	  	<span class="custom-control-description">PMT</span>
+	</label>
+	<label class="custom-control custom-checkbox">
+	  	<input type="checkbox" class="custom-control-input">
+	 	 <span class="custom-control-indicator"></span>
+	  	<span class="custom-control-description">JEE Mains</span>
+	</label>
+	<label class="custom-control custom-checkbox">
+	  	<input type="checkbox" class="custom-control-input">
+	 	 <span class="custom-control-indicator"></span>
+	  	<span class="custom-control-description">Banking</span>
+	</label>
+	<label class="custom-control custom-checkbox">
+	  	<input type="checkbox" class="custom-control-input">
+	 	 <span class="custom-control-indicator"></span>
+	  	<span class="custom-control-description">Others</span>
+	</label>
+
+  </div>
+</div>

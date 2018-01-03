@@ -1,0 +1,50 @@
+class ProblemsController < ApplicationController
+	before_action :authenticate_user!,:authorise_user
+
+	def index
+	end
+
+	def new
+		@testid=params[:testid]
+		@problem=Problem.new
+	end
+
+	def create
+		@problem=Problem.new(set_params)
+		@problem.user=current_user
+		@problem.save
+		redirect_to action: 'new'
+	end
+
+	def edit
+		@testid=params[:testid]
+		@problem=Problem.find_by(id: params[:problemid])
+	end
+
+	def update
+		@problem=Problem.find_by(id: params[:problemid])
+		@problem.update(set_params)
+		@problem.save
+		redirect_to '/'
+	end
+
+	def destroy
+	end
+	
+
+	private
+
+		def set_params
+			params.require(:problem).permit(:answer,:queno,:que,:option1,:option2,:option3,:option4,:option5,:option6,:option7,:option8,:option9,:option10,:subject,:testid,:option1,:diffLevel,:marks)
+		end
+
+		def authorise_user
+			if(params[:testid])
+				@test=Test.find_by_id(params[:testid])
+				if(current_user!=@test.user)
+					redirect_to '/'
+				end
+			end
+		end
+
+end

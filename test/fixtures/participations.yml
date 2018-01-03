@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  test_id: 
+  user_id: 
+  score: 1
+  wrongAnswers: 1
+  correctAnswers: 1
+
+two:
+  test_id: 
+  user_id: 
+  score: 1
+  wrongAnswers: 1
+  correctAnswers: 1
