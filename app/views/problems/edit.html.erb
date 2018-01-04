@@ -1,6 +1,6 @@
 <%= form_for @problem, url: {action: "update"} do |f| %>
 	<%= f.hidden_field :testid, :value => @problem.testid %><br/>
-	Question Number: <%= f.text_field :queno %><br/>
+	Question Number: <%= f.number_field :queno %><br/>
 	Question: <%= f.text_field :que %><br/>
 	Option1: <%= f.text_field :option1 %><br/>
 	Option2: <%= f.text_field :option2 %><br/>
@@ -9,6 +9,6 @@
 	Answer: <%= f.text_field :answer %><br/>
 	Marks: <%= f.text_field :marks%><br/>
 	Subject: <%= f.text_field :subject %><br/>
-	Difficulty Level: <%= f.text_field :difflevel,min: '1',max: '5' %><br/>
+	Difficulty Level: <%= f.number_field :difflevel,min: '1',max: '5' %><br/>
 	<%= f.submit%>
 <%end%>
