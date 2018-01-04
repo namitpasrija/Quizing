@@ -37,8 +37,36 @@ class TestsController < ApplicationController
 		redirect_to '/test/mytests'
 	end
 
-	def instructions
-		@testid=params[:testid]
+
+	def testinfo
+		@test=Test.find_by_id(params[:testid])
+		if(!@test)
+			redirect_to '/'
+		end
+	end
+
+	def register
+		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
+		if(Test.find_by_id(params[:testid]).endtime<@time)
+			redirect_to action: '/'
+		end
+		@participation=Participation.new()
+		@participation.user=current_user
+		@participation.test_id=params[:testid]
+		@participation.save
+		redirect_to action: 'testinfo',testid: params[:testid]
+	end
+
+	
+	def environment
+		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
+		@test=Test.find_by_id(params[:testid])
+
+		if !(@test.endtime>@time && @test.starttime<@time)
+			redirect_to action: '/'
+		end
+
+		 @totalproblems=Problem.where(:testid=>@test.id).length
 	end
 
 	def changeproblem
@@ -52,31 +80,6 @@ class TestsController < ApplicationController
 		end
 	end
 
-	def environment
-		if(Participation.where(:user_id=>current_user.id).where(:test_id=>params[:testid]).empty?)
-			@participation=Participation.new()
-			@participation.user=current_user
-			@participation.test_id=params[:testid]
-			@participation.save
-			redirect_to action: 'instructions',testid: params[:testid]
-		end
-			
-		@qno=params[:qno]
-		@test=params[:testid]
-		if(!params[:qno])
-			@qno=1
-		end
-
-		@problem=Problem.where(:testid=>@test).where(:queno=>@qno).first
-		@totalproblems=Problem.where(:testid=>@test)
-		@answered=""
-		if(@problem)
-			@attempts=Attempt.where(:user_id=>current_user.id).where(:problem_id=>@problem.id)
-			if(!@attempts.empty?)
-				@answered=@attempts.first.answered
-			end
-		end
-	end
 
 	def attempt
 		@attempts=Attempt.where(:user_id=>current_user.id).where(:problem_id=>params[:problemid])

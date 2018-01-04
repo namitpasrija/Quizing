@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
   devise_for :users
+  # User Routes
   get '/' => 'tests#index'
+  get '/test/view/:testid' => 'tests#testinfo'
+  get '/test/register/:testid' => 'tests#register'
+  get '/test/environment' => 'tests#environment'
+  get '/test/changeproblem' => 'tests#changeproblem'
+  post '/attempt' => 'tests#attempt'
+  
+
+  # Admin Routes
   get '/problem/new' => 'problems#new'
   get '/problem/edit/:problemid' => 'problems#edit'
-  post '/problem/new' => 'problems#create'
   get '/test/new' => 'tests#new'
-  get '/test/edit/:testid' => 'tests#edit'
   post '/test/new' => 'tests#create'
   get '/test/mytests'=> 'tests#myTests'
-  get '/test/instructions'=> 'tests#instructions'
-  get '/test/environment' => 'tests#environment'
-  patch '/problem/edit/:problemid' => 'problems#update'
+  get '/test/edit/:testid' => 'tests#edit'
+  post '/problem/new' => 'problems#create'
   patch '/test/edit/:testid' => 'tests#update'
-  post '/attempt' => 'tests#attempt'
-  get '/test/changeproblem' => 'tests#changeproblem'
-  
+  patch '/problem/edit/:problemid' => 'problems#update'
 end

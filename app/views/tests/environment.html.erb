@@ -13,26 +13,27 @@
 		    </ul>
 		  </div>
 		  <div class="card-body" style="padding:30px;">
-
-		  <% if !@problem.blank?%>
-		  
 		  <div align="left" id="question">	
-			<%= render 'problem', problem: @problem %>	
+		  	<input type="hidden" name="queno" value="0" id="queno">
+   			<input type="hidden" name="testid" value="<%= @test.id %>" id="testid">
+   			<h4><b>Instructions</b></h4>
+   			<%= @test.instructions %>
 		 </div>
 
-			<button type="button" class="btn btn-primary btn-md" onclick="prevproblem(event);">Previous Problem</button>
-			<button type="button" class="btn btn-primary btn-md" onclick="nextproblem(event);">Next Problem</button>
-			<br/>
-			<%else%>
-			 <p>This Test Does not contain any problem yet.
-			<%end%>
-			<br/>
+		 <center>
+		<button type="button" class="btn btn-primary btn-md" onclick="prevproblem(event);" id="prevbutton">Previous Problem</button>
+		<button type="button" class="btn btn-primary btn-md" onclick="nextproblem(event);" id="nextbutton">Next Problem</button><br/>
+		<button type="button" class="btn btn-primary btn-md" onclick="nextproblem(event);" id="moveonproblems">Move on Problems</button>
+		</center>
+		<br/>
+
 			
-			<% if @totalproblems.length>0 %>
-				<input type="hidden" id="totalproblems" value="<%= @totalproblems.length %>" >
+			<% if @totalproblems>=0 %>
+				<input type="hidden" id="totalproblems" value="<%= @totalproblems %>" >
 				<h5>Jump on question number</h5>
 				<div id="questionnumber" style="padding:10px;" >
-				<% for i in 1..@totalproblems.length %>
+				<button type="button" class="btn btn-success btn-xs" id="pagebutton0" onclick="jumpto(event,0)">Instructions</button>		 
+				<% for i in 1..@totalproblems %>
 		  			<button type="button" class="btn btn-success btn-xs" id="pagebutton<%=i%>" onclick="jumpto(event,<%=i%>)"><%= i %></button>		 
 		  		<%end%>
 		  		</div>
@@ -73,9 +74,13 @@
 
 		document.getElementById("pagebutton"+(parseInt(qno.value)-1)).setAttribute("class", "btn btn-warning btn-xs");
 		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
+		document.getElementById("prevbutton").style.visibility='visible';
+		document.getElementById("nextbutton").style.visibility='visible';
+		document.getElementById("moveonproblems").style.visibility='hidden';
 	}
 
 	var nextproblem=function(event){
+
 		qno=document.getElementById('queno')
 		testid=document.getElementById('testid')
 		totalproblems=document.getElementById('totalproblems')
@@ -96,10 +101,24 @@
 
 		document.getElementById("pagebutton"+(parseInt(qno.value)+1)).setAttribute("class", "btn btn-warning btn-xs");
 		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
+
+		document.getElementById("prevbutton").style.visibility='visible';
+		document.getElementById("nextbutton").style.visibility='visible';
+		document.getElementById("moveonproblems").style.visibility='hidden';
 	}
 
 	var jumpto=function(event,queno){
 		qno=document.getElementById('queno')
+		if(queno==0){
+			document.getElementById('question').innerHTML="<input type='hidden' name='queno' value='0' id='queno'><input type='hidden' name='testid' value='<%= @test.id %>' id='testid'><h4><b>Instructions</b></h4><%= @test.instructions %>";
+			document.getElementById("pagebutton0").setAttribute("class", "btn btn-warning btn-xs");
+			document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
+			document.getElementById("prevbutton").style.visibility='hidden';
+			document.getElementById("nextbutton").style.visibility='hidden';
+			document.getElementById("moveonproblems").style.visibility='visible';
+
+			return 0;
+		}
 		$.ajax({
 			type:'GET',
 			url:'/test/changeproblem',
@@ -111,9 +130,16 @@
 
 		document.getElementById("pagebutton"+queno).setAttribute("class", "btn btn-warning btn-xs");
 		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
+		document.getElementById("prevbutton").style.visibility='visible';
+		document.getElementById("nextbutton").style.visibility='visible';
+		document.getElementById("moveonproblems").style.visibility='hidden';
 	}
 
 	queno=parseInt(document.getElementById("queno").value)
-	currentbutton="pagebutton"+queno
-	document.getElementById(currentbutton).setAttribute("class", "btn btn-warning btn-xs");
+	button=document.getElementById("pagebutton"+queno)
+	button.setAttribute("class", "btn btn-warning btn-xs");
+
+	
+	document.getElementById("prevbutton").style.visibility='hidden';
+	document.getElementById("nextbutton").style.visibility='hidden';
 </script>

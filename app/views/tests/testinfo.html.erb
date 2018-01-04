@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9" style="padding-top: 30px; padding-left: 50px;background: #f4f3f3;">
+		<div class="card">
+	  
+	  <div class="card-header">
+	    <span style="margin-left:20px;font-size:12px;"><i>Conducted by : <%= @test.conductedby %> </i></span>
+	  </div>
+	  <div class="card-body">
+	    	<b>Description</b><br/>
+	    	<p><%= @test.description %></p>
+	    	<b>Instructions</b><br/>
+	    	<p><%= @test.instructions %></p>
+	    	<b>Fee</b><br/>
+	    	<p>₹ <%= @test.fee %></p>
+	    	<b>Prize Money</b><br/>
+	    	<p>₹ <%= @test.prize %> will be awarded to the winner of this quiz.</p>
+	    <blockquote class="blockquote mb-0">
+	      <footer class="blockquote-footer"><br/><b>Start Time</b><br/>
+	    	<p><%= @test.starttime %> IST</p>
+	    	<b>End Time</b><br/>
+	    	<p><%= @test.endtime %> IST</p>
+	    </footer>
+	    </blockquote>
+
+    	<p>
+    		<% @currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
+    		<% if(@currenttime<@test.endtime) %>
+	    		<center>
+	    			<% if(Participation.where(:user_id=>current_user.id).where(:test_id=>@test.id).empty?) %>
+	    				<a href="/test/register/<%= @test.id%>"><button type="button" class="btn btn-primary btn-lg">Register Now</button></a>
+	    			<%else%>
+	    				<% if(@currenttime<@test.starttime) %>
+	    				<button type="button" class="btn btn-primary btn-lg" disabled>Start Test</button>
+	    				<%else%>
+	    				<a href="/test/environment/?testid=<%= @test.id%>"><button type="button" class="btn btn-primary btn-lg">Start Test</button></a>
+	    				<%end%>
+	    			<%end%>
+	    		</center%
+	    	<%else%>
+	    		<center>
+	    		<button type="button" class="btn btn-primary btn-lg">Solve Problems</button>
+	    		<button type="button" class="btn btn-primary btn-lg">View Leaderboard</button>
+	    		</center>
+	       <%end%>
+    	</p>
+	  </div>
+	</div>
+	    </div>
+ <div class="col-sm-3" style="padding-top: 30px;background: #e5e7e8;padding-left:20px;">
+ </div>
+</div>
