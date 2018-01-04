@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104111247) do
+ActiveRecord::Schema.define(version: 20180104113552) do
 
   create_table "attempts", force: :cascade do |t|
     t.integer  "user_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180104111247) do
     t.integer  "testid"
     t.text     "subject"
     t.integer  "marks"
-    t.integer  "diffLevel"
+    t.integer  "difflevel"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

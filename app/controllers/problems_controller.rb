@@ -35,7 +35,7 @@ class ProblemsController < ApplicationController
 	private
 
 		def set_params
-			params.require(:problem).permit(:answer,:queno,:que,:option1,:option2,:option3,:option4,:option5,:option6,:option7,:option8,:option9,:option10,:subject,:testid,:option1,:diffLevel,:marks)
+			params.require(:problem).permit(:answer,:queno,:que,:option1,:option2,:option3,:option4,:option5,:option6,:option7,:option8,:option9,:option10,:subject,:testid,:option1,:difflevel,:marks)
 		end
 
 		def authorise_user
