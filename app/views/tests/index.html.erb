@@ -10,8 +10,18 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title"><%= test.title %></h5>
-          <p class="card-text"><%= test.description %></p>
-          <a href="/test/environment/?testid=<%= test.id%>" class="btn btn-success" style="background: #9c0;border: #9c0;">Start Now</a>
+          <p class="card-text">
+            <%= test.description %>
+              <center>
+                <% @currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
+                <% @endtime=test.endtime %>
+                <% diff=(@endtime-@currenttime)/1.day %>
+                <p style="font-size:10px;margin-bottom: 5px; ">ENDS IN</p>
+                <span style="font-size:20px;"> <%= diff.to_i %> : <%= ((diff-diff.floor)*24).to_i %> : <%= ((((diff-diff.floor)*24)-((diff-diff.floor)*24).floor)*60).to_i %></span><br/>
+                <span style="font-size:10px;">Days&nbsp;&nbsp;&nbsp;&nbsp;Hours&nbsp;&nbsp;&nbsp;&nbsp;Minutes</span>
+              </center>
+            </p>
+          <center><a href="/test/environment/?testid=<%= test.id%>" class="btn btn-success" style="background: #9c0;border: #9c0;">Start Now</a></center>
         </div>
          <div class="card-footer">
         <small class="text-muted">Fee</small>
@@ -30,8 +40,19 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title"><%= test.title %></h5>
-          <p class="card-text"><%= test.description %></p>
-          <a href="#" class="btn btn-success" style="background: #9c0;border: #9c0;">Start Now</a>
+          <p class="card-text">
+            <%= test.description %>
+              <center>
+                <% @currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
+                <% @starttime=test.starttime %>
+                <% diff=(@starttime-@currenttime)/1.day %>
+                <p style="font-size:10px;margin-bottom: 5px; ">STARTS IN</p>
+                <span style="font-size:20px;"> <%= diff.to_i %> : <%= ((diff-diff.floor)*24).to_i %> : <%= ((((diff-diff.floor)*24)-((diff-diff.floor)*24).floor)*60).to_i %></span><br/>
+                <span style="font-size:10px;">Days&nbsp;&nbsp;&nbsp;Hours&nbsp;&nbsp;Minutes</span>
+              </center>
+
+            </p>
+          <center><a href="#" class="btn btn-success" style="background: #9c0;border: #9c0;">Start Now</a></center>
         </div>
          <div class="card-footer">
         <small class="text-muted">Fee</small>
