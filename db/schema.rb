@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103134442) do
+ActiveRecord::Schema.define(version: 20180104111247) do
 
   create_table "attempts", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20180103134442) do
   create_table "participations", force: :cascade do |t|
     t.integer  "test_id"
     t.integer  "user_id"
-    t.integer  "score",   :default => 0
-    t.integer  "wrongAnswers",   :default => 0
-    t.integer  "correctAnswers",   :default => 0
+    t.integer  "score"
+    t.integer  "wrongAnswers"
+    t.integer  "correctAnswers"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "maxscore"
@@ -71,15 +71,15 @@ ActiveRecord::Schema.define(version: 20180103134442) do
     t.text     "title"
     t.text     "description"
     t.integer  "duration"
-    t.datetime "startTime"
-    t.datetime "endTime"
-    t.text     "conductedBy"
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.text     "conductedby"
     t.integer  "user_id"
     t.integer  "fee"
     t.text     "prize"
     t.text     "instructions"
     t.text     "password"
-    t.text     "tType"
+    t.text     "ttype"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

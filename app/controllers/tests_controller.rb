@@ -3,9 +3,9 @@ class TestsController < ApplicationController
 
 	def index
 		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
-		@ongoingtests=Test.where("startTime<?",@time).where("endTime>?",@time)
-		@upcomingtests=Test.where("startTime>?",@time).where("endTime>?",@time)
-		@pasttests=Test.where("startTime<?",@time).where("endTime<?",@time)
+		@ongoingtests=Test.where("starttime<?",@time).where("endtime>?",@time)
+		@upcomingtests=Test.where("starttime>?",@time).where("endtime>?",@time)
+		@pasttests=Test.where("starttime<?",@time).where("endtime<?",@time)
 	end
 
 	def new
@@ -101,6 +101,6 @@ class TestsController < ApplicationController
 	private
 
 		def set_params
-			params.require(:test).permit(:title,:description,:duration,:startTime,:endTime,:conductedBy,:user_id,:fee,:prize,:instructions,:password,:tType)
+			params.require(:test).permit(:title,:description,:duration,:starttime,:endtime,:conductedby,:user_id,:fee,:prize,:instructions,:password,:ttype)
 		end
 end
