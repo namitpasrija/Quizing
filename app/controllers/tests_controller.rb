@@ -2,9 +2,10 @@ class TestsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@ongoingtests=Test.all
-		@upcomingtests=Test.all
-		@pasttests=Test.all
+		@time=Time.now
+		@ongoingtests=Test.where('startTime<?',@time).where('endTime>?',@time)
+		@upcomingtests=Test.where('startTime>?',@time).where('endTime>?',@time)
+		@pasttests=Test.where('startTime<?',@time).where('endTime<?',@time)
 	end
 
 	def new
