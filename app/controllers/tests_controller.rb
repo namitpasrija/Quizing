@@ -3,9 +3,9 @@ class TestsController < ApplicationController
 
 	def index
 		@time=Time.now
-		@ongoingtests=Test.where('startTime<?',@time).where('endTime>?',@time)
-		@upcomingtests=Test.where('startTime>?',@time).where('endTime>?',@time)
-		@pasttests=Test.where('startTime<?',@time).where('endTime<?',@time)
+		@ongoingtests=Test.where('startTime<?',@time)
+		@upcomingtests=Test.where('startTime>?',@time)
+		@pasttests=Test.where('startTime<?',@time)
 	end
 
 	def new
