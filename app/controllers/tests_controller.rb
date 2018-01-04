@@ -93,10 +93,12 @@ class TestsController < ApplicationController
 			@attempt.save
 		else
 			@attempt=@attempts.first
-			@attempt.answered=""
-			params[:options][0].keys.each do |key|
-				@attempt.answered+=key
-				@attempt.answered+=","
+			@attempt.answered=","
+			if params[:options] 
+				params[:options][0].keys.each do |key|
+					@attempt.answered+=key
+					@attempt.answered+=","
+				end
 			end
 			@attempt.save
 		end
@@ -111,3 +113,4 @@ class TestsController < ApplicationController
 			params.require(:test).permit(:title,:description,:duration,:starttime,:endtime,:conductedby,:user_id,:fee,:prize,:instructions,:password,:ttype)
 		end
 end
+	
