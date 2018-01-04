@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/test/instructions'=> 'tests#instructions'
   get '/test/environment' => 'tests#environment'
   patch '/problem/edit/:problemid' => 'problems#update'
+  patch '/test/edit/:testid' => 'tests#update'
   post '/attempt' => 'tests#attempt'
   get '/test/changeproblem' => 'tests#changeproblem'
   

@@ -30,6 +30,13 @@ class TestsController < ApplicationController
 		@problems=Problem.where(testid: params[:testid])
 	end
 
+	def update
+		@test=Test.find_by(id: params[:testid])
+		@test.update(set_params)
+		@test.save
+		redirect_to '/test/mytests'
+	end
+
 	def instructions
 		@testid=params[:testid]
 	end
