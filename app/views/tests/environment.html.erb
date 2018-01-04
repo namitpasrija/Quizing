@@ -33,7 +33,7 @@
 				<h5>Jump on question number</h5>
 				<div id="questionnumber" style="padding:10px;" >
 				<% for i in 1..@totalproblems.length %>
-		  			<button type="button" class="btn btn-success btn-xs"><%= i %></button>		 
+		  			<button type="button" class="btn btn-success btn-xs" id="pagebutton<%=i%>" onclick="jumpto(event,<%=i%>)"><%= i %></button>		 
 		  		<%end%>
 		  		</div>
 		  	<%end%>
@@ -57,7 +57,10 @@
 		testid=document.getElementById('testid')
 		
 		if(qno.value<=1)
-			return 0
+		{
+			alert("Already on First Problem");
+			return 0;
+		}
 
 		$.ajax({
 			type:'GET',
@@ -67,14 +70,15 @@
 				 },
 			dataType: 'script',		
 		});
+
+		document.getElementById("pagebutton"+(parseInt(qno.value)-1)).setAttribute("class", "btn btn-warning btn-xs");
+		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
 	}
 
 	var nextproblem=function(event){
-		console.log("test");
 		qno=document.getElementById('queno')
 		testid=document.getElementById('testid')
 		totalproblems=document.getElementById('totalproblems')
-		console.log(parseInt(qno.value));
 
 		if(parseInt(qno.value)==parseInt(totalproblems.value)){
 			alert("Already on last problem");
@@ -89,5 +93,27 @@
 				 },
 			dataType: 'script',		
 		});
+
+		document.getElementById("pagebutton"+(parseInt(qno.value)+1)).setAttribute("class", "btn btn-warning btn-xs");
+		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
 	}
+
+	var jumpto=function(event,queno){
+		qno=document.getElementById('queno')
+		$.ajax({
+			type:'GET',
+			url:'/test/changeproblem',
+			data:{'qno':queno,
+				  'testid':testid.value
+				 },
+			dataType: 'script',		
+		});
+
+		document.getElementById("pagebutton"+queno).setAttribute("class", "btn btn-warning btn-xs");
+		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
+	}
+
+	queno=parseInt(document.getElementById("queno").value)
+	currentbutton="pagebutton"+queno
+	document.getElementById(currentbutton).setAttribute("class", "btn btn-warning btn-xs");
 </script>

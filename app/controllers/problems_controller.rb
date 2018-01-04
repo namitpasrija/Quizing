@@ -13,7 +13,7 @@ class ProblemsController < ApplicationController
 		@problem=Problem.new(set_params)
 		@problem.user=current_user
 		@problem.save
-		redirect_to action: 'new'
+		redirect_to "/test/edit/#{@problem.testid}"
 	end
 
 	def edit

@@ -37,6 +37,11 @@ class TestsController < ApplicationController
 		@qno=params[:qno]
 		@test=params[:testid]
 		@problem=Problem.where(:testid=>@test).where(:queno=>@qno)[0]
+		@attempts=Attempt.where(:user_id=>current_user.id).where(:problem_id=>@problem.id)
+		@answered=""
+		if(!@attempts.empty?)
+			@answered=@attempts.first.answered
+		end
 	end
 
 	def environment
@@ -56,6 +61,13 @@ class TestsController < ApplicationController
 
 		@problem=Problem.where(:testid=>@test).where(:queno=>@qno).first
 		@totalproblems=Problem.where(:testid=>@test)
+		@answered=""
+		if(@problem)
+			@attempts=Attempt.where(:user_id=>current_user.id).where(:problem_id=>@problem.id)
+			if(!@attempts.empty?)
+				@answered=@attempts.first.answered
+			end
+		end
 	end
 
 	def attempt
@@ -79,7 +91,6 @@ class TestsController < ApplicationController
 				@attempt.answered+=","
 			end
 			@attempt.save
-
 		end
 	end	
 
