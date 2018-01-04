@@ -2,7 +2,7 @@ class TestsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@time=Time.now
+		@time=Time.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
 		@ongoingtests=Test.where("'startTime'<?",@time).where("'endTime'>?",@time)
 		@upcomingtests=Test.where("'startTime'>?",@time).where("'endTime'>?",@time)
 		@pasttests=Test.where("'startTime'<?",@time).where("'endTime'<?",@time)
