@@ -3,9 +3,9 @@ class TestsController < ApplicationController
 
 	def index
 		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
-		@ongoingtests=Test.where("'startTime'<?",@time).where("'endTime'>?",@time)
-		@upcomingtests=Test.where("'startTime'>?",@time).where("'endTime'>?",@time)
-		@pasttests=Test.where("'startTime'<?",@time).where("'endTime'<?",@time)
+		@ongoingtests=Test.where("startTime<?",@time).where("endTime>?",@time)
+		@upcomingtests=Test.where("startTime>?",@time).where("endTime>?",@time)
+		@pasttests=Test.where("startTime<?",@time).where("endTime<?",@time)
 	end
 
 	def new
