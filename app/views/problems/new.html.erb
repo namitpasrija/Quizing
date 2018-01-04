@@ -1,6 +1,6 @@
 <%= form_for @problem, url: {action: "create"} do |f| %>
 	<%= f.hidden_field :testid, :value => @testid %><br/>
-
+	Question Number: <%= f.number_field :queno %><br/>
 	Question: <%= f.text_field :que %><br/>
 	Option1: <%= f.text_field :option1 %><br/>
 	Option2: <%= f.text_field :option2 %><br/>
@@ -9,6 +9,6 @@
 	Answer: <%= f.text_field :answer %><br/>
 	Marks: <%= f.text_field :marks ,value: '0'%><br/>
 	Subject: <%= f.text_field :subject %><br/>
-
+	
 	<%= f.submit%>
 <%end%>
