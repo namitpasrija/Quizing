@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'resque', require: 'resque/server'
+gem 'resque-scheduler'
+gem 'resque-web', git: 'https://github.com/resque/resque-web.git', branch: 'resque-2'
+
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

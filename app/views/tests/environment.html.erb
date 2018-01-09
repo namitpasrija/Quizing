@@ -17,7 +17,7 @@
 		  	<input type="hidden" name="queno" value="0" id="queno">
    			<input type="hidden" name="testid" value="<%= @test.id %>" id="testid">
    			<h4><b>Instructions</b></h4>
-   			<%= @test.instructions %>
+   			<div style="white-space: pre-wrap;"><%= @test.instructions %></div>
 		 </div>
 
 		 <center>
@@ -45,6 +45,7 @@
  <div class="col-sm-3" style="padding-top: 30px;background: #e5e7e8;padding-left:20px;">
  </div>
 </div>
+
 
 
 <script type="text/javascript">
@@ -110,7 +111,7 @@
 	var jumpto=function(event,queno){
 		qno=document.getElementById('queno')
 		if(queno==0){
-			document.getElementById('question').innerHTML="<input type='hidden' name='queno' value='0' id='queno'><input type='hidden' name='testid' value='<%= @test.id %>' id='testid'><h4><b>Instructions</b></h4><%= @test.instructions %>";
+			document.getElementById('question').innerHTML="<input type='hidden' name='queno' value='0' id='queno'><input type='hidden' name='testid' value='1' id='testid'><h4><b>Instructions</b></h4>";
 			document.getElementById("pagebutton0").setAttribute("class", "btn btn-warning btn-xs");
 			document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
 			document.getElementById("prevbutton").style.visibility='hidden';

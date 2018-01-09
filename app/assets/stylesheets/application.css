@@ -14,6 +14,17 @@
  *= require_self
  */
 
+.footerline{
+  background:#37485b ;
+  height:20px;
+  margin-bottom: 0px;
+}
+.footer{
+  background: #23303f;
+  height:70px;
+  margin-left: -15px !important;
+  
+  }
 
 .checkbox label:after {
   content: '';

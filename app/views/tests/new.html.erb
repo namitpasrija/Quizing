@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <%= form_for @test, url: {action: "create"} do |f| %>
 	Title: <%= f.text_field :title %><br/>
 	Description: <%= f.text_area :description %><br/>
@@ -12,3 +13,4 @@
 	Test Type:<%= f.text_field :ttype %><br/>
 	<%= f.submit%>
 <%end%>
+</div>

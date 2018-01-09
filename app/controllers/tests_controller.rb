@@ -2,6 +2,7 @@ class TestsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
+
 		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
 		@ongoingtests=Test.where("starttime<?",@time).where("endtime>?",@time)
 		@upcomingtests=Test.where("starttime>?",@time).where("endtime>?",@time)
@@ -16,6 +17,7 @@ class TestsController < ApplicationController
 		@test=Test.new(set_params)
 		@test.user=current_user
 		@test.save
+		Resque.enqueue_at(@test.endtime,TestWorker,@test.id)
 		redirect_to action: 'myTests'
 	end
 

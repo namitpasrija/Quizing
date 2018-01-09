@@ -5,6 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -72,6 +74,12 @@
 </nav>
 
 <%= yield %>
+
+   <div class="footer" style="padding-left:0;">
+        <center><p style="color:#f6f6f6;padding-top: 10px;font-size: 15px;">© 2017 Quizing.in   All Rights Reserved.</p>
+          <div style="margin-top:-10px;"><a href="#" target="_blank"><i class="fa fa-facebook-official icon-large" aria-hidden="true" style="color:white;margin-left: 10px;"></i></a><i class="fa fa-twitter-square" aria-hidden="true"  style="color:white;margin-left: 10px;"></i></div>
+        </center>
+    </div>
 
 </body>
 </html>

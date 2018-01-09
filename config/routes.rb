@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   post '/problem/new' => 'problems#create'
   patch '/test/edit/:testid' => 'tests#update'
   patch '/problem/edit/:problemid' => 'problems#update'
+
 end
