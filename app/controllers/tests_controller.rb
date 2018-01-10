@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-	before_action :authenticate_user!, only: [:new,:create,:update,:register,:environment,:changeproblem,:attempt,:destroy]
+	before_action :authenticate_user!, only: [:new,:create,:update,:register,:environment,:changeproblem,:attempt,:destroy,:testinfo]
 
 	def index
 		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))

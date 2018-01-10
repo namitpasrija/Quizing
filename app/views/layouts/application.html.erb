@@ -51,7 +51,7 @@
   </ul>
     <div class="nav-item dropdown" style="color:white;">
         <% if user_signed_in? %>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
+        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
           <% profileurl=current_user.profilePicUrl+'?s=20' %>
           <img src="<%= profileurl %> ">
           <%= current_user.FirstName %> <%= current_user.LastName %>
@@ -59,7 +59,9 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Messages</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Edit Profile</a>
+          <a class="dropdown-item" href="#">View Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/users/edit">Edit Profile</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/users/sign_out" data-method="delete">Logout</a>
         </div>
@@ -72,7 +74,7 @@
 </nav>
 
 <%= yield %>
-
+  <hr class="footerline">
    <div class="footer" style="padding-left:0;">
         <center><p style="color:#f6f6f6;padding-top: 10px;font-size: 15px;">© 2017 Quizing.in   All Rights Reserved.</p>
           <div style="margin-top:-10px;"><a href="#" target="_blank"><i class="fa fa-facebook-official icon-large" aria-hidden="true" style="color:white;margin-left: 10px;"></i></a><i class="fa fa-twitter-square" aria-hidden="true"  style="color:white;margin-left: 10px;"></i></div>
