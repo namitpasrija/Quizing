@@ -16,7 +16,7 @@ class TestsController < ApplicationController
 		@test=Test.new(set_params)
 		@test.user=current_user
 		@test.save
-		Resque.enqueue_at(@test.endtime,TestWorker,@test.id)
+		# Resque.enqueue_at(@test.endtime,TestWorker,@test.id)
 		redirect_to action: 'myTests'
 	end
 
