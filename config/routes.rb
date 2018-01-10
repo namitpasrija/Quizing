@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   # User Routes
   get '/' => 'tests#index'
   get '/test/view/:testid' => 'tests#testinfo'
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
   get '/test/changeproblem' => 'tests#changeproblem'
   post '/attempt' => 'tests#attempt'
   
+  devise_for :users, :controllers => { registrations: 'registrations'}
 
   # Admin Routes
   get '/problem/new' => 'problems#new'

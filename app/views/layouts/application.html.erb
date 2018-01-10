@@ -16,12 +16,12 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css?family=Allerta+Stencil" rel="stylesheet">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: #333753; padding-left:50px;padding-right: 50px;">
-  <a class="navbar-brand" href="/">Quizing</a>
+  <a class="navbar-brand" href="/" style="font-family: 'Allerta Stencil', sans-serif; font-size: 20px; ">Quizing</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -43,30 +43,28 @@
       <li class="nav-item" style="margin-left: 10px;">
         <a class="nav-link" href="#">Discuss</a>
       </li>
-      
+      <li>
+        <form class="form-inline my-2 my-lg-0" style="padding-left: 10px;">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search quizes ond our shining stars" style="background-color: #272a41;" size="30">
+        </form>
+      </li> 
   </ul>
-    <form class="form-inline my-2 my-lg-0" style="padding-left: 20px;">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" style="background-color: #272a41;">
-      </form>
-        
-
     <div class="nav-item dropdown" style="color:white;">
         <% if user_signed_in? %>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
-          Namit Pasrija
+          <% profileurl=current_user.profilePicUrl+'?s=20' %>
+          <img src="<%= profileurl %> ">
+          <%= current_user.FirstName %> <%= current_user.LastName %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Messages</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Edit Profile</a>
-          <a class="dropdown-item" href="#">Change Password</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="/users/sign_out" data-method="delete">Logout</a>
         </div>
         <%else%>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
-          Login/Signup
-        </a>
+         <span class="nav-link"><a href="/users/sign_in" style="color:white;">Login</a> / <a href="/users/sign_up" style="color:white;">Register</a></span>
         <%end%>
       </div>
 

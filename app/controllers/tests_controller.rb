@@ -1,8 +1,7 @@
 class TestsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_user!, only: [:new,:create,:update,:register,:environment,:changeproblem,:attempt,:destroy]
 
 	def index
-
 		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
 		@ongoingtests=Test.where("starttime<?",@time).where("endtime>?",@time)
 		@upcomingtests=Test.where("starttime>?",@time).where("endtime>?",@time)

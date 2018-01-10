@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104113552) do
+ActiveRecord::Schema.define(version: 20180110075047) do
 
   create_table "attempts", force: :cascade do |t|
     t.integer  "user_id"
@@ -99,6 +99,12 @@ ActiveRecord::Schema.define(version: 20180104113552) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.text     "FirstName"
+    t.text     "LastName"
+    t.datetime "Dob"
+    t.text     "Gender"
+    t.text     "Contact"
+    t.text     "profilePicUrl"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-ENV["REDISTOGO_URL"] = 'redis://h:p23d440557b3e5a6b88cc1429bb5b62b464914c3d89861450c31c07b8df9fd0d1@ec2-34-199-160-190.compute-1.amazonaws.com:23279'
+ENV["REDISTOGO_URL"] = 'redis://h:p61a407cf3797958129803c825b2e9a081499bd9290876e5bc9613b83e33ee1c0@ec2-34-232-179-152.compute-1.amazonaws.com:12989'
   # Code is not reloaded between requests.
   config.cache_classes = true
 
