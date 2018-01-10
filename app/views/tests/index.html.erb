@@ -62,7 +62,7 @@
             <%= test.description %>
               <center>
                 <% @currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
-                <% @starttime=test.starttime %>
+                <% @starttime=test.starttime.to_f*1000 %>
                 <p style="font-size:10px;margin-bottom: 5px; ">STARTS IN</p>
                 <span style="font-size:20px;" id="timer<%= test.id%>"></span><br/>
               </center>
