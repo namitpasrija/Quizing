@@ -62,11 +62,10 @@
             <%= test.description %>
               <center>
                 <% @currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
-                <% @starttime=test.starttime %>
-                <% diff=(@starttime-@currenttime)/1.day %>
-                <p style="font-size:10px;margin-bottom: 5px; ">STARTS IN</p>
-                <span style="font-size:20px;"> <%= diff.to_i %> : <%= ((diff-diff.floor)*24).to_i %> : <%= ((((diff-diff.floor)*24)-((diff-diff.floor)*24).floor)*60).to_i %></span><br/>
-                <span style="font-size:10px;">Days&nbsp;&nbsp;&nbsp;Hours&nbsp;&nbsp;Minutes</span>
+                <% @endtime=test.endtime.to_f*1000 %>
+                <p style="font-size:10px;margin-bottom: 5px; ">ENDS IN</p>
+                <span style="font-size:20px;" id="timer<%= test.id%>"></span><br/>
+                <!-- <span style="font-size:10px;">Days&nbsp;&nbsp;&nbsp;&nbsp;Hours&nbsp;&nbsp;&nbsp;&nbsp;Minutes</span> -->
               </center>
 
             </p>
@@ -77,6 +76,26 @@
       </div>
       </div>
     </div>
+
+     <script>
+    endtime=<%= @endtime %>
+    var timer<%= test.id%>countDownDate = new Date(endtime).getTime();
+    var timer<%= test.id%> = setInterval(function() {
+      var timer<%= test.id%>now = new Date().getTime();
+      var timer<%= test.id%>distance =timer<%= test.id%>countDownDate-timer<%= test.id%>now;
+      var timer<%= test.id%>days = Math.floor(timer<%= test.id%>distance / (1000 * 60 * 60 * 24));
+      var timer<%= test.id%>hours = Math.floor((timer<%= test.id%>distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var timer<%= test.id%>minutes = Math.floor((timer<%= test.id%>distance % (1000 * 60 * 60)) / (1000 * 60));
+      var timer<%= test.id%>seconds = Math.floor((timer<%= test.id%>distance % (1000 * 60)) / 1000);
+      document.getElementById("timer<%= test.id%>").innerHTML = timer<%= test.id%>days + "d " + timer<%= test.id%>hours + "h "
+      + timer<%= test.id%>minutes + "m " + timer<%= test.id%>seconds + "s ";
+      if (timer<%= test.id%>distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    },1000);
+    </script>
+    
   <%end%>
   
   
