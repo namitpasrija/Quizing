@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/test/environment' => 'tests#environment'
   get '/test/changeproblem' => 'tests#changeproblem'
   post '/attempt' => 'tests#attempt'
+  get '/test/scoreboard' => 'tests#scoreboard'
+  get '/test/preenrolled' => 'tests#preenrolled'
   
   devise_for :users, :controllers => { registrations: 'registrations'}
 

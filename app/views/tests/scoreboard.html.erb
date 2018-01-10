@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9" style="padding-top: 30px; padding-left: 50px;background: #f4f3f3;">
+		<div class="card text-center">
+		  <div class="card-header">
+		    <ul class="nav nav-tabs card-header-tabs">
+		    <li class="nav-item">
+		        <a class="nav-link" href="#">Instructions</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Problems</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link active" href="#">Score Board</a>
+		      </li>
+		    </ul>
+		  </div>
+		  <div class="card-body" style="padding:30px;">
+		 
+		  	<% @enrollments.each do |enrollment| %>
+				<%= enrollment.score %>
+			<%end%>
+
+		  </div>
+		</div>
+    </div>
+
+	 <div class="col-sm-3" style="padding-top: 30px;background: #e5e7e8;padding-left:20px;">
+
+	 		<div id="timer">
+	 		</div>
+
+	 </div>
+</div>
+
+</div>

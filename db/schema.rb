@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110075047) do
+ActiveRecord::Schema.define(version: 20180110162210) do
 
   create_table "attempts", force: :cascade do |t|
     t.integer  "user_id"
@@ -27,6 +27,31 @@ ActiveRecord::Schema.define(version: 20180110075047) do
   add_index "attempts", ["problem_id"], name: "index_attempts_on_problem_id"
   add_index "attempts", ["test_id"], name: "index_attempts_on_test_id"
   add_index "attempts", ["user_id"], name: "index_attempts_on_user_id"
+
+  create_table "computeds", force: :cascade do |t|
+    t.integer  "test_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "computeds", ["test_id"], name: "index_computeds_on_test_id"
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "test_id"
+    t.datetime "startedAt"
+    t.datetime "endsAt"
+    t.boolean  "submittedStatus"
+    t.integer  "wrongAnswers"
+    t.integer  "correctAnswers"
+    t.integer  "score"
+    t.integer  "maxscore"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "enrollments", ["test_id"], name: "index_enrollments_on_test_id"
+  add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id"
 
   create_table "participations", force: :cascade do |t|
     t.integer  "test_id"
@@ -59,10 +84,11 @@ ActiveRecord::Schema.define(version: 20180110075047) do
     t.integer  "marks"
     t.integer  "difflevel"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "answer"
     t.decimal  "queno"
+    t.integer  "negativemarks"
   end
 
   add_index "problems", ["user_id"], name: "index_problems_on_user_id"

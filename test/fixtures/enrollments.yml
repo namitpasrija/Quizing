@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  test_id: 
+  startedAt: 2018-01-10 17:58:41
+  endsAt: 2018-01-10 17:58:41
+  submittedStatus: false
+  wrongAnswers: 1
+  correctAnswers: 1
+  score: 1
+  maxscore: 1
+
+two:
+  user_id: 
+  test_id: 
+  startedAt: 2018-01-10 17:58:41
+  endsAt: 2018-01-10 17:58:41
+  submittedStatus: false
+  wrongAnswers: 1
+  correctAnswers: 1
+  score: 1
+  maxscore: 1
