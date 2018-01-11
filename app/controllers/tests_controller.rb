@@ -227,6 +227,7 @@ class TestsController < ApplicationController
 
 					@enrollments[i].score=@userattempts.sum(:marks)
 					@enrollments[i].correctAnswers=@userattempts.sum(:status)
+					@enrollments[i].wrongAnswers=@userattempts.length-@enrollments[i].correctAnswers
 					@enrollments[i].maxscore=@maxscore
 
 

@@ -30,6 +30,8 @@
     		<% @currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
     		<% if(@currenttime<@test.endtime) %>
 	    		<center>
+	    			<a href="/test/scoreboard/?testid=<%= @test.id %>"><button type="button" class="btn btn-primary btn-lg">View Score Board</button></a>
+
 	    			<% if(Participation.where(:user_id=>current_user.id).where(:test_id=>@test.id).empty?) %>
 	    				<a href="/test/register/<%= @test.id%>"><button type="button" class="btn btn-primary btn-lg">Register Now</button></a>
 	    			<%else%>

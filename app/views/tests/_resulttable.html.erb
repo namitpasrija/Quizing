@@ -1,0 +1,47 @@
+<table cellspacing='0'>
+
+	<thead>
+		<tr>
+			<th>Rank</th>
+			<th>Name</th>
+			<th>Score</th>
+			<th>Correct Answers</th>
+			<th>Wrong Answers</th>
+			<th>Accuracy</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		
+		<% noofenrollments=enrollments.length %>
+
+		<% (0..(noofenrollments-1)).each do |i| %>
+		
+			<% userid=enrollments[i].user_id %>
+			<% user=User.find_by_id(userid) %>
+
+			<%if (i%2) %>
+				<tr>
+					<td><%= i+1%></td>
+					<td><%= user.FirstName%> <%= user.LastName%></td>
+					<td><%= enrollments[i].score %>/<%= enrollments[i].maxscore %></td>
+					<td><%= enrollments[i].correctAnswers %></td>
+					<td><%= enrollments[i].wrongAnswers %></td>
+					<td><%= ((enrollments[i].correctAnswers*100)/(enrollments[i].correctAnswers+enrollments[i].wrongAnswers)) %>%</td>
+				</tr>
+			<%else%>
+				<tr class="even">
+					<td><%= i+1 %></td>
+					<td><%= user.FirstName%> <%= user.LastName%></td>
+					<td><%= enrollments[i].score %>/<%= enrollments[i].maxscore %></td>
+					<td><%= enrollments[i].correctAnswers %></td>
+					<td><%= enrollments[i].wrongAnswers %></td>
+					<td><%= ((enrollments[i].correctAnswers*100)/(enrollments[i].correctAnswers+enrollments[i].wrongAnswers)) %>%</td>
+				</tr>
+				
+				<%end%>
+		<%end%>
+
+	</tbody>
+
+</table>
