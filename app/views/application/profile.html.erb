@@ -9,20 +9,28 @@
     </div>
     <div class="col-sm-6" style="padding-top: 30px; padding-left: 50px;">
         <h4><b><%= @user.FirstName%> <%= @user.LastName%></b></h4>
-        <span id="profession" style="font-family:arial;font-size:12px;">Gender: Male</span><br>
-        <span id="profession" style="font-family:arial;font-size:12px;">Born on: 5th Jan 1997</span><br>
-        <span id="profession" style="font-family:arial;font-size:12px;">Country: India</span><br>
-          <span id="profession" style="font-family:arial;font-size:12px;">Studying in YMCA University of science and technology Faridabad.</span><br/><br/>
+        <span id="profession" style="font-family:arial;font-size:12px;">Gender: <%= @user.Gender%></span><br>
+        <span id="profession" style="font-family:arial;font-size:12px;">Born on: <%= @user.bornon %></span><br>
+        <span id="profession" style="font-family:arial;font-size:12px;">Country: <%= @user.country %></span><br>
+          <span id="profession" style="font-family:arial;font-size:12px;">
+            <% if @user.profession=="Student"%>
+            Studying in<%else%>Working at<%end%> <%= @user.profession_place %></span><br/><br/>
           <span><b>Social Links</b></span> <br/>
         <ul type="none" style="display: flex;padding: 0px;">
-          <li style=""><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></li>
-          <li style="margin-left: 15px;"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
-            <li style="margin-left: 15px;"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></li>
+          <li><a href="<%= @user.facebook%>" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
+          
+          <li style="margin-left: 15px;">
+           <a href="<%= @user.linkedin%>" target="_blank"> <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
+          </li>
+          
+           <li style="margin-left: 15px;">
+          <a href="<%= @user.twitter%>" target="_blank"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+          </li>
         </ul>
     </div>
 
      <div class="col-sm-3" style="padding-top: 30px;">
-       <button type="button" class="btn btn-primary btn-med">Edit Profile</button>
+      <a href="/user/edit/<%=@user.id%>"> <button type="button" class="btn btn-primar ybtn-med">Edit Profile</button></a>
 
      </div>
 
@@ -30,7 +38,7 @@
   <hr>
   <div class="row">
     <div class="col-sm-3" style="padding-top:10px; padding-left: 50px;">
-      <button type="button" class="btn btn-default btn-med">Message</button><button type="button" class="btn btn-info btn-med" style="margin-left: 20px;">Follow</button><br/>
+      <button type="button" class="btn btn-default btn-med">Message</button><button type="button" class="btn btn-info btn-med" style="margin-left: 10px;">Follow</button><br/>
       <hr>
       <div style="width: 80%;display: inline-block;margin-bottom: 0px;">Followers</div><div style="width: 20%;display: inline-block;margin-bottom: 0px;"><b>20</b></div>
       <hr style="border:1px dashed #eee;margin-top: 0px;">
@@ -40,12 +48,12 @@
       <h6><b>About Me</b></h6>
 
       <div id="about" style="padding: 5px;word-wrap: break-word;">
-      I m cool looking guysdsdsodjdoisoisdusodusoidsodoisdsdjsiossdsdsdsddsodisudoi.
+      <%= @user.about %>
       </div>
     </div>
 
     <div class="col-sm-6" style="padding-top: 30px; padding-left: 50px;">
-      <h6><b>Interests</b></h6> Programming,Playing Cricket,Flirting<br/><hr style="border:1px dashed #eee;margin-top: 0px;">
+      <h6><b>Interests</b></h6> <%= @user.interests%><br/><hr style="border:1px dashed #eee;margin-top: 0px;">
       <h6><b>Quiz Attempted</b></h6> 3<br/><hr style="border:1px dashed #eee;margin-top: 0px;">
       <h6><b>Problems Solved</b></h6> 24<br/><hr style="border:1px dashed #eee;margin-top: 0px;">
 

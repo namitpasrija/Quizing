@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111130530) do
+ActiveRecord::Schema.define(version: 20180111155107) do
 
   create_table "attempts", force: :cascade do |t|
     t.integer  "user_id"
@@ -93,22 +93,6 @@ ActiveRecord::Schema.define(version: 20180111130530) do
 
   add_index "problems", ["user_id"], name: "index_problems_on_user_id"
 
-  create_table "profiles", force: :cascade do |t|
-    t.text     "gender"
-    t.datetime "dob"
-    t.text     "country"
-    t.text     "facebook"
-    t.text     "linkedin"
-    t.text     "twitter"
-    t.text     "snapchat"
-    t.text     "interests"
-    t.text     "about"
-    t.text     "profession"
-    t.text     "profession_place"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
   create_table "tests", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
@@ -147,6 +131,15 @@ ActiveRecord::Schema.define(version: 20180111130530) do
     t.text     "Gender"
     t.text     "Contact"
     t.text     "profilePicUrl"
+    t.text     "country"
+    t.text     "profession"
+    t.text     "profession_place"
+    t.text     "facebook"
+    t.text     "linkedin"
+    t.text     "twitter"
+    t.text     "interests"
+    t.text     "about"
+    t.text     "bornon"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -17,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
 	  def account_update_params
 	  	hashh=Digest::MD5.hexdigest(params[:user][:email])
 	  	params[:user][:profilePicUrl]='https://www.gravatar.com/avatar/'+hashh
-	    params.require(:user).permit(:FirstName, :LastName, :Contact, :email,:Gender,:Dob,:password, :password_confirmation, :current_password,:profilePicUrl)
+	    params.require(:user).permit(:FirstName, :LastName, :Contact, :email,:Gender,:Dob,:password, :password_confirmation, :current_password,:profilePicUrl,:interests,:facebook,:linkedin,:twitter,:about,:profession,:profession_place,:country)
 	  end
 
 	  def update_resource(resource, params)

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get '/test/scoreboard' => 'tests#scoreboard'
   get '/test/preenrolled' => 'tests#preenrolled'
   get '/test/submit' => 'tests#submit'
+
   get '/user/:userid' => 'application#profile'
+  get '/user/edit/:userid' => 'application#editprofile'
   devise_for :users, :controllers => { registrations: 'registrations'}
 
   # Admin Routes
