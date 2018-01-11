@@ -1,7 +1,7 @@
 <h1>Problems</h1>
 	<a href="/problem/new/?testid=<%=@test.id%>">Add Problem</a><br/><br/>
 	<% @problems.each do |problem| %>
-		<%= problem.que %> <a href="/problem/edit/<%= problem.id%>">Edit Problem</a> <a href="">Delete Problem</a><br/>
+		<%= problem.que %> <a href="/problem/edit/<%= problem.id%>">Edit Problem</a> <a href="/problem/delete/?testid=<%=@test.id%>&problemid=<%= problem.id%>" data-method="delete">Delete Problem</a><br/>
 	<%end%>
 
 <h1>Details</h1><br/>

@@ -29,9 +29,11 @@ class ProblemsController < ApplicationController
 	end
 
 	def destroy
+		@problems=Problem.find_by(id: params[:problemid])
+		@problems.destroy
+		redirect_to '/test/mytests'
 	end
 	
-
 	private
 
 		def set_params

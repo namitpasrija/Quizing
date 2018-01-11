@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # Admin Routes
   get '/problem/new' => 'problems#new'
   get '/problem/edit/:problemid' => 'problems#edit'
+  delete '/problem/delete' => 'problems#destroy'
   get '/test/new' => 'tests#new'
   post '/test/new' => 'tests#create'
   get '/test/mytests'=> 'tests#myTests'
