@@ -103,9 +103,18 @@ class TestsController < ApplicationController
 	end
 
 	def submit
-		enrollment=Enrollment.where(:user_id=>current_user.id).where(:test_id=>@test.id).first
+		@test=Test.find_by_id(params[:testid])
+		@currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
+		
+		enrollment=Enrollment.where(:user_id=>current_user.id).where(:test_id=>params[:testid]).first
 		enrollment.submittedStatus=true 
 		enrollment.save
+
+		if(@test.endtime>@currenttime)
+			@flag=0
+		else
+			@flag=1
+		end
 	end
 
 	def changeproblem
@@ -122,6 +131,13 @@ class TestsController < ApplicationController
 
 	def attempt
 		@attempts=Attempt.where(:user_id=>current_user.id).where(:problem_id=>params[:problemid])
+		@currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
+		enrollment=Enrollment.where(:user_id=>current_user.id).where(:test_id=>params[:testid]).first
+
+		if(@currenttime>enrollment.endsAt)
+			redirect_to action: 'index'
+		end
+
 		if(@attempts.empty?)
 			@attempt=Attempt.new()
 			@attempt.user=current_user

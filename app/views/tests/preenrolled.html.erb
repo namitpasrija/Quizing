@@ -1,10 +1,24 @@
 <div class="container-fluid">
   <div class="row">
-    	<div class="col-sm-9" style="padding-top: 30px; padding-left: 50px;background: #f4f3f3;">
-			You have already enrolled for this test.
+    	<div class="col-sm-12" style="padding-top: 30px; padding-left: 50px;">
+			<center><h2>You have already taken this quiz.</h2><br/><img src="/smiley2.svg" height="300px;" width="300px;"><br/><br/><h2>You will be redirected to homepage in <span id="timer"></span> seconds.</h2><br/><br/></center>
+			
 	 	</div>
-
-	 	<div class="col-sm-3" style="padding-top: 30px;background: #e5e7e8;padding-left:20px;">
- 		</div>
 	</div>
 </div>
+
+
+  <script>
+  	var seconds=10
+	
+	setInterval(function() {
+		seconds=seconds-1;
+		document.getElementById('timer').innerHTML=seconds
+		if(seconds<=0){
+			location="/"
+			return
+		}
+
+    },1000);  	
+
+  </script>

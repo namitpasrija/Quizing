@@ -1,10 +1,23 @@
 <div class="container-fluid">
   <div class="row">
-    	<div class="col-sm-9" style="padding-top: 30px; padding-left: 50px;background: #f4f3f3;">
-			Thanks for taking this test you can view your result on scoreboard once the test gets finished.
+    	<div class="col-sm-12" style="padding-top: 30px; padding-left: 50px;">
+			
+			<% if(@flag==0) %>
+				<center><h1>Thanks for taking this quiz you will be able to your result on scoreboard once the quiz gets finished...</h1><br/>
+				<img src="/smiley.png" width="200px;" height="200px;"><br/><br/>
+				<h3>Quiz will be ending at</h3><h3 id="endtime"> </h3><br/><br/><p>Once the quiz gets over we will notify you threw email as well as threw sms sent on your registered mobile number.</p>
+				</center>
+				
+			<%else%>
+				<center><h1>Thanks for taking this quiz.</h1><br/>
+				<img src="/smiley.png" width="200px;" height="200px;"><br/><br/>
+				<a href="/test/scoreboard/testid=<%=@test.id %>"><button type="button" class="btn btn-primary btn-lg">View Score Board</button></a>
+				</center>
+			<%end%>
 	 	</div>
-
-	 	<div class="col-sm-3" style="padding-top: 30px;background: #e5e7e8;padding-left:20px;">
- 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	endtime=<%= @test.endtime.to_f*1000 %>
+	document.getElementById('endtime').innerHTML=new Date(endtime);
+</script>

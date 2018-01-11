@@ -25,7 +25,7 @@
 		 </div>
 
 		 <center>
-		<button type="button" class="btn btn-danger">Submit Quiz</button> 	
+		<button type="button" class="btn btn-danger" onclick="submit()" >Submit Quiz</button> 	
 		<button type="button" class="btn btn-primary btn-md" onclick="prevproblem(event);" id="prevbutton">Previous Problem</button>
 		<button type="button" class="btn btn-primary btn-md" onclick="nextproblem(event);" id="nextbutton">Next Problem</button><br/>
 		</center>
@@ -54,6 +54,16 @@
 </div>
 
 <script type="text/javascript">
+	var submit=function(){
+		value=prompt("Once submitted you will not be allowed to do any further submissions or to change your submissions.\n\nIf you want to continue submiting the quiz type yes else type no.")
+		if(value.toUpperCase()=="YES"){
+			testid=document.getElementById('testid').value
+			location="/test/submit/?testid="+testid
+
+			console.log(location)
+		}
+	}
+
 	var AttemptEntry=function(event){
 		problemsubmit=document.getElementById('problemsubmit');
 		problemsubmit.click();
@@ -143,7 +153,9 @@
       + minutes + "m " + seconds + "s ";
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+        
+        testid=document.getElementById('testid').value
+		location="/test/submit/?testid="+testid
       }
     },1000);
     </script>
