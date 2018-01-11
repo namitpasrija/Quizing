@@ -14,7 +14,7 @@
         <span id="profession" style="font-family:arial;font-size:12px;">Country: <%= @user.country %></span><br>
           <span id="profession" style="font-family:arial;font-size:12px;">
             <% if @user.profession=="Student"%>
-            Studying in<%else%>Working at<%end%> <%= @user.profession_place %></span><br/><br/>
+            <i class="fa fa-university" aria-hidden="true"></i> Studying in<%else%>Working at<%end%> <%= @user.profession_place %></span><br/><br/>
           <span><b>Social Links</b></span> <br/>
         <ul type="none" style="display: flex;padding: 0px;">
           <li><a href="<%= @user.facebook%>" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
