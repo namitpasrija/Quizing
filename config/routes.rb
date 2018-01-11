@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/attempt' => 'tests#attempt'
   get '/test/scoreboard' => 'tests#scoreboard'
   get '/test/preenrolled' => 'tests#preenrolled'
+  get '/test/submit' => 'tests/submit'
   
   devise_for :users, :controllers => { registrations: 'registrations'}
 

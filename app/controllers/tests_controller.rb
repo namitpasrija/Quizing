@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-	before_action :authenticate_user!, only: [:new,:create,:update,:register,:environment,:changeproblem,:attempt,:destroy,:testinfo]
+	before_action :authenticate_user!, only: [:new,:create,:update,:register,:environment,:changeproblem,:attempt,:destroy,:testinfo,:submit]
 	@@queans=Hash.new
 	def index
 		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
@@ -83,9 +83,29 @@ class TestsController < ApplicationController
 		if(enrollment.submittedStatus==true || @time>enrollment.endsAt)
 			redirect_to action: 'preenrolled'
 		end
+		
+		if(params[:qno])
+			@qno=params[:qno]
+		else
+			@qno=1
+		end
 
+		@test=params[:testid]
+		@problem=Problem.where(:testid=>@test).where(:queno=>@qno)[0]
+		@attempts=Attempt.where(:user_id=>current_user.id).where(:problem_id=>@problem.id)
+		@answered=""
+		if(!@attempts.empty?)
+			@answered=@attempts.first.answered
+		end
 
-		 @totalproblems=Problem.where(:testid=>@test.id).length
+		@endtime=enrollment.endsAt
+		 @totalproblems=Problem.where(:testid=>@test).length
+	end
+
+	def submit
+		enrollment=Enrollment.where(:user_id=>current_user.id).where(:test_id=>@test.id).first
+		enrollment.submittedStatus=true 
+		enrollment.save
 	end
 
 	def changeproblem

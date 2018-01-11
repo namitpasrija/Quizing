@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-9" style="padding-top: 30px; padding-left: 50px;background: #f4f3f3;">
+		
+		<center>Your particiption ending in <br/><div id="timer"></div><br/></center>
+
 		<div class="card text-center">
 		  <div class="card-header">
 		    <ul class="nav nav-tabs card-header-tabs">
@@ -14,19 +17,17 @@
 		        <a class="nav-link" href="#">Score Board</a>
 		      </li>
 		    </ul>
+
 		  </div>
 		  <div class="card-body" style="padding:30px;">
 		  <div align="left" id="question">	
-		  	<input type="hidden" name="queno" value="0" id="queno">
-   			<input type="hidden" name="testid" value="<%= @test.id %>" id="testid">
-   			<h4><b>Instructions</b></h4>
-   			<div style="white-space: pre-wrap;"><%= @test.instructions %></div>
+		  	<%= render 'problem', problem: @problem,answered: @answered %>
 		 </div>
 
 		 <center>
+		<button type="button" class="btn btn-danger">Submit Quiz</button> 	
 		<button type="button" class="btn btn-primary btn-md" onclick="prevproblem(event);" id="prevbutton">Previous Problem</button>
 		<button type="button" class="btn btn-primary btn-md" onclick="nextproblem(event);" id="nextbutton">Next Problem</button><br/>
-		<button type="button" class="btn btn-primary btn-md" onclick="nextproblem(event);" id="moveonproblems">Move on Problems</button>
 		</center>
 		<br/>
 
@@ -35,7 +36,7 @@
 				<input type="hidden" id="totalproblems" value="<%= @totalproblems %>" >
 				<h5>Jump on question number</h5>
 				<div id="questionnumber" style="padding:10px;" >
-				<button type="button" class="btn btn-success btn-xs" id="pagebutton0" onclick="jumpto(event,0)">Instructions</button>		 
+		
 				<% for i in 1..@totalproblems %>
 		  			<button type="button" class="btn btn-success btn-xs" id="pagebutton<%=i%>" onclick="jumpto(event,<%=i%>)"><%= i %></button>		 
 		  		<%end%>
@@ -46,9 +47,6 @@
 		</div>
     </div>
  <div class="col-sm-3" style="padding-top: 30px;background: #e5e7e8;padding-left:20px;">
-
- 		<div id="timer">
- 		</div>
 
  </div>
 </div>
@@ -82,9 +80,6 @@
 
 		document.getElementById("pagebutton"+(parseInt(qno.value)-1)).setAttribute("class", "btn btn-warning btn-xs");
 		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
-		document.getElementById("prevbutton").style.visibility='visible';
-		document.getElementById("nextbutton").style.visibility='visible';
-		document.getElementById("moveonproblems").style.visibility='hidden';
 	}
 
 	var nextproblem=function(event){
@@ -109,24 +104,11 @@
 
 		document.getElementById("pagebutton"+(parseInt(qno.value)+1)).setAttribute("class", "btn btn-warning btn-xs");
 		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
-
-		document.getElementById("prevbutton").style.visibility='visible';
-		document.getElementById("nextbutton").style.visibility='visible';
-		document.getElementById("moveonproblems").style.visibility='hidden';
 	}
 
 	var jumpto=function(event,queno){
 		qno=document.getElementById('queno')
-		if(queno==0){
-			document.getElementById('question').innerHTML="<input type='hidden' name='queno' value='0' id='queno'><input type='hidden' name='testid' value='1' id='testid'><h4><b>Instructions</b></h4>";
-			document.getElementById("pagebutton0").setAttribute("class", "btn btn-warning btn-xs");
-			document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
-			document.getElementById("prevbutton").style.visibility='hidden';
-			document.getElementById("nextbutton").style.visibility='hidden';
-			document.getElementById("moveonproblems").style.visibility='visible';
 
-			return 0;
-		}
 		$.ajax({
 			type:'GET',
 			url:'/test/changeproblem',
@@ -138,16 +120,30 @@
 
 		document.getElementById("pagebutton"+queno).setAttribute("class", "btn btn-warning btn-xs");
 		document.getElementById("pagebutton"+parseInt(qno.value)).setAttribute("class", "btn btn-success btn-xs");
-		document.getElementById("prevbutton").style.visibility='visible';
-		document.getElementById("nextbutton").style.visibility='visible';
-		document.getElementById("moveonproblems").style.visibility='hidden';
+		
 	}
 
 	queno=parseInt(document.getElementById("queno").value)
 	button=document.getElementById("pagebutton"+queno)
 	button.setAttribute("class", "btn btn-warning btn-xs");
 
-	
-	document.getElementById("prevbutton").style.visibility='hidden';
-	document.getElementById("nextbutton").style.visibility='hidden';
 </script>
+
+  <script>
+    endtime=<%= @endtime.to_f*1000 %>
+    var countDownDate = new Date(endtime).getTime();
+    var countdowntimer = setInterval(function() {
+      var now = new Date().getTime();
+      var distance =countDownDate-now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    },1000);
+    </script>
