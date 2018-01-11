@@ -41,8 +41,7 @@
       document.getElementById("timer<%= test.id%>").innerHTML = timer<%= test.id%>days + "d " + timer<%= test.id%>hours + "h "
       + timer<%= test.id%>minutes + "m " + timer<%= test.id%>seconds + "s ";
       if (timer<%= test.id%>distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+        location.reload();
       }
     },1000);
     </script>
@@ -89,8 +88,7 @@
       document.getElementById("timer<%= test.id%>").innerHTML = timer<%= test.id%>days + "d " + timer<%= test.id%>hours + "h "
       + timer<%= test.id%>minutes + "m " + timer<%= test.id%>seconds + "s ";
       if (timer<%= test.id%>distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+        location.reload();
       }
     },1000);
     </script>
