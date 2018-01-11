@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   
   def profile
   	@user=User.find_by_id(params[:userid])
+    @attempts=Attempt.where(user_id: params[:userid])
+    @quizesattempted=@attempts.pluck(:test_id).uniq.count
+    @correct=@attempts.sum(:status)
+    @wrong=@attempts.length-@correct
   end
 
   def editprofile

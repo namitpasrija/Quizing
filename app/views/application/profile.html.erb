@@ -40,9 +40,9 @@
     <div class="col-sm-3" style="padding-top:10px; padding-left: 50px;">
       <button type="button" class="btn btn-default btn-med">Message</button><button type="button" class="btn btn-info btn-med" style="margin-left: 10px;">Follow</button><br/>
       <hr>
-      <div style="width: 80%;display: inline-block;margin-bottom: 0px;">Followers</div><div style="width: 20%;display: inline-block;margin-bottom: 0px;"><b>20</b></div>
+      <div style="width: 80%;display: inline-block;margin-bottom: 0px;">Followers</div><div style="width: 20%;display: inline-block;margin-bottom: 0px;"><b>-</b></div>
       <hr style="border:1px dashed #eee;margin-top: 0px;">
-      <div style="width: 80%;display: inline-block;margin-bottom: 0px;">Following</div><div style="width: 20%;display: inline-block;margin-bottom: 0px;"><b>8</b></div>
+      <div style="width: 80%;display: inline-block;margin-bottom: 0px;">Following</div><div style="width: 20%;display: inline-block;margin-bottom: 0px;"><b>-</b></div>
       <hr>
 
       <h6><b>About Me</b></h6>
@@ -54,13 +54,13 @@
 
     <div class="col-sm-6" style="padding-top: 30px; padding-left: 50px;">
       <h6><b>Interests</b></h6> <%= @user.interests%><br/><hr style="border:1px dashed #eee;margin-top: 0px;">
-      <h6><b>Quiz Attempted</b></h6> 3<br/><hr style="border:1px dashed #eee;margin-top: 0px;">
-      <h6><b>Problems Solved</b></h6> 24<br/><hr style="border:1px dashed #eee;margin-top: 0px;">
+      <h6><b>Quiz Attempted</b></h6>  <%=@quizesattempted%><br/><hr style="border:1px dashed #eee;margin-top: 0px;">
+      <h6><b>Problems Solved</b></h6> <%=@correct%><br/><hr style="border:1px dashed #eee;margin-top: 0px;">
 
     <h6><b>Performance Graph</b></h6>      
     <div id="pie" style="height: 300px;margin-top: 20px;"></div>
     <script>
-      new Chartkick.PieChart("pie", [["Correct Answers",30],["Wrong Answers",20]], {download: "pie"});
+      new Chartkick.PieChart("pie", [["Correct Answers", <%=@correct%>],["Wrong Answers", <%=@wrong%>]], {download: "pie"});
     </script><br/><br/>
 
     </div>
