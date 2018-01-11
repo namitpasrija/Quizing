@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  
+  before_action :authenticate_user!,only:[:editprofile]
   def profile
   	@user=User.find_by_id(params[:userid])
     @attempts=Attempt.where(user_id: params[:userid])

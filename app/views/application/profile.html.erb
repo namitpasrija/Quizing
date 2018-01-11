@@ -29,10 +29,11 @@
         </ul>
     </div>
 
+    <%if current_user.id=@user.id%>
      <div class="col-sm-3" style="padding-top: 30px;">
       <a href="/user/edit/<%=@user.id%>"> <button type="button" class="btn btn-primar ybtn-med">Edit Profile</button></a>
-
      </div>
+    <%end%>
 
   </div>
   <hr>
