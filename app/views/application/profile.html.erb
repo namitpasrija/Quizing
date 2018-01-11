@@ -1,0 +1,77 @@
+<script src="/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
+
+<div class="container-fluid" style="padding:0 8%; ">
+  <div class="row">
+    
+    <div class="col-sm-3" style="padding: 20px;">
+        <img src="<%= @user.profilePicUrl%>/?s=228" style="border:5px solid #eee;">
+    </div>
+    <div class="col-sm-6" style="padding-top: 30px; padding-left: 50px;">
+        <h4><b><%= @user.FirstName%> <%= @user.LastName%></b></h4>
+        <span id="profession" style="font-family:arial;font-size:12px;">Gender: Male</span><br>
+        <span id="profession" style="font-family:arial;font-size:12px;">Born on: 5th Jan 1997</span><br>
+        <span id="profession" style="font-family:arial;font-size:12px;">Country: India</span><br>
+          <span id="profession" style="font-family:arial;font-size:12px;">Studying in YMCA University of science and technology Faridabad.</span><br/><br/>
+          <span><b>Social Links</b></span> <br/>
+        <ul type="none" style="display: flex;padding: 0px;">
+          <li style=""><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></li>
+          <li style="margin-left: 15px;"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+            <li style="margin-left: 15px;"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+
+     <div class="col-sm-3" style="padding-top: 30px;">
+       <button type="button" class="btn btn-primary btn-med">Edit Profile</button>
+
+     </div>
+
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-3" style="padding-top:10px; padding-left: 50px;">
+      <button type="button" class="btn btn-default btn-med">Message</button><button type="button" class="btn btn-info btn-med" style="margin-left: 20px;">Follow</button><br/>
+      <hr>
+      <div style="width: 80%;display: inline-block;margin-bottom: 0px;">Followers</div><div style="width: 20%;display: inline-block;margin-bottom: 0px;"><b>20</b></div>
+      <hr style="border:1px dashed #eee;margin-top: 0px;">
+      <div style="width: 80%;display: inline-block;margin-bottom: 0px;">Following</div><div style="width: 20%;display: inline-block;margin-bottom: 0px;"><b>8</b></div>
+      <hr>
+
+      <h6><b>About Me</b></h6>
+
+      <div id="about" style="padding: 5px;word-wrap: break-word;">
+      I m cool looking guysdsdsodjdoisoisdusodusoidsodoisdsdjsiossdsdsdsddsodisudoi.
+      </div>
+    </div>
+
+    <div class="col-sm-6" style="padding-top: 30px; padding-left: 50px;">
+      <h6><b>Interests</b></h6> Programming,Playing Cricket,Flirting<br/><hr style="border:1px dashed #eee;margin-top: 0px;">
+      <h6><b>Quiz Attempted</b></h6> 3<br/><hr style="border:1px dashed #eee;margin-top: 0px;">
+      <h6><b>Problems Solved</b></h6> 24<br/><hr style="border:1px dashed #eee;margin-top: 0px;">
+
+    <h6><b>Performance Graph</b></h6>      
+    <div id="pie" style="height: 300px;margin-top: 20px;"></div>
+    <script>
+      new Chartkick.PieChart("pie", [["Correct Answers",30],["Wrong Answers",20]], {download: "pie"});
+    </script><br/><br/>
+
+    </div>
+
+     <div class="col-sm-3" style="padding-top: 30px;">
+      
+      <h6><b>Participated In</b></h6>
+      <ul style="padding:5px 5px;" type="none">
+        <li><a href="#" style="text-decoration: none;">Allen Maths Quiz</a></li>
+        <li><a href="#" style="text-decoration: none;">SSC Maths Quiz</a></li>
+        <li><a href="#" style="text-decoration: none;">Data Structures Quiz </a></li>
+        <li><a href="#" style="text-decoration: none;">Allen PMT Test</a></li>
+      </ul>
+      <div style="text-align: right;"><a href="#" style="text-decoration: none;">View All</a></div>
+
+        <hr style="border:1px dashed #eee;margin-top: 0px;">
+    </div>
+
+</div>
+
+</div>
+
