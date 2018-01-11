@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates_presence_of :FirstName
   validates_presence_of :LastName
-  validates_presence_of :profession
-  validates_presence_of :profession_place
   validates_uniqueness_of :Contact
   
 
