@@ -1,7 +1,7 @@
 <%= form_for @problem, url: {action: "create"} do |f| %>
 	<%= f.hidden_field :testid, :value => @testid %><br/>
 	Question Number: <%= f.number_field :queno %><br/>
-	Question: <%= f.text_field :que %><br/>
+	Question: <%= f.text_area :que %><br/>
 	Option1: <%= f.text_area :option1 %><br/>
 	Option2: <%= f.text_area :option2 %><br/>
 	Option3: <%= f.text_area :option3 %><br/>

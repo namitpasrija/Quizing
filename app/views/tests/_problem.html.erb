@@ -1,4 +1,4 @@
-<b>Que<%= problem.queno%>  <%= problem.que %></b><br/>	
+<b>Que<%= problem.queno%>  <span style="white-space: pre-wrap;"><%= problem.que %></span></b><br/>	
 <form action="/attempt" method="post" style="padding: 20px;" data-remote="true">
    	<%= token_tag %>
     <input type="hidden" name="queno" value="<%= problem.queno %>" id="queno">
