@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/test/preenrolled' => 'tests#preenrolled'
   get '/test/submit' => 'tests#submit'
 
+  get '/under_const' => 'application#under'
   get '/user/:userid' => 'application#profile'
   get '/user/edit/:userid' => 'application#editprofile'
   devise_for :users, :controllers => { registrations: 'registrations'}

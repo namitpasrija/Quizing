@@ -16,4 +16,7 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  def under
+  end
+
 end

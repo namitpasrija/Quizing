@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.2/js/standalone/selectize.min.js"></script>
+
 <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -17,9 +19,6 @@
       <div class="col-lg-12">
         <div class="card w-100">
           <div class="card-body w-100">
-      
-      
-
             <form action="/users" accept-charset="UTF-8" method="post">
               <input type="hidden" name="_method" value="put">
               <%= token_tag %>
@@ -29,8 +28,11 @@
                 <div class="form-group">
                   <label for="sel1">Gender</label>
                   <select class="form-control" name="user[Gender]">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <% if @user.Gender=='Female' %>
+                      <option value="Female" selected>Female</option>
+                    <% else %>
+                      <option value="Male" selected>Male</option>
+                    <%end%>
                   </select>
                 </div>
 
@@ -53,7 +55,7 @@
 
                <div class="form-group">
                 <label for="exampleInputContact">Interests</label>
-                <input type="text" class="form-control" id="interests"  placeholder="Enter your hobbies" name="user[interests]" value="<%= @user.interests%>">
+                <input type="text" class="form-control" id="interests"  placeholder="Enter your hobbies" name="user[interests]" value="<%= @user.interests%>"  class="">
               </div>
 
 
@@ -111,15 +113,19 @@
 
         </div>
       </div>
-<script type="text/javascript">
-    $('#interests').selectize({
-    delimiter: ',',
-    persist: false,
-    create: function(input) {
-        return {
-            value: input,
-            text: input
-        }
-    }
-});
-  </script>
+
+<script>
+        $('#interests').selectize({
+          persist: false,
+          create: true,
+          render: {
+            item: function(data, escape) {
+              return '<div>"' + escape(data.text) + '"</div>';
+            }
+          },
+          onDelete: function(values) {
+            return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+          }
+        });
+</script>
+
