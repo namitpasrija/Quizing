@@ -11,7 +11,12 @@
         <div class="card-body">
           <h5 class="card-title"><a href="/test/view/<%= test.id%>" style="color:black;"><%= test.title %></a></h5>
           <p class="card-text">
-            <%= test.description %>
+            <% length=test.description.length %>
+            <% if(length>50) %>
+              <%= test.description.first(50) %>....
+            <%else%>
+              <%=test.description%>
+            <%end%>
               <center>
                 <% @currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
                 <% @endtime=test.endtime.to_f*1000 %>
