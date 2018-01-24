@@ -111,12 +111,18 @@
       </ul>
       <% if user_signed_in? %>
        <% @time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
-        <% @participations=Participation.where(:user_id=>current_user.id) %>
-
-
-       
+        <% @participations=Participation.where(:user_id=>current_user.id).where('endingat>?',@time) %>
       
-
+        <h6><b>Registered Quizes</b></h6>
+        <hr style="border-top: dotted 1px;" />
+        <ul type="none" style="padding:5px;color:#4c9cdf;">
+          <% @participations.each do |participation| %>
+              <li>
+                <a href="/test/view/<%= participation.test_id%>" style="text-decoration: none;"><%= participation.testTitle%></a>
+              <% if participation.startingat<@time %><span style="color:white;background:#69bd69;border-radius:20px;font-family: arial;">&nbsp;&nbsp;Ongoing&nbsp;&nbsp;</span><%end%>
+             </li>
+          <%end%>
+        </ul>
       <% end %>
 
        <h6><b>Quiz Type</b></h6>
