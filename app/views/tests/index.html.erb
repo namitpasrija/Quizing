@@ -12,8 +12,8 @@
           <h5 class="card-title"><a href="/test/view/<%= test.id%>" style="color:black;"><%= test.title %></a></h5>
           <p class="card-text">
             <% length=test.description.length %>
-            <% if(length>50) %>
-              <%= test.description.first(50) %>....
+            <% if(length>70) %>
+              <%= test.description.first(70) %>....
             <%else%>
               <%=test.description%>
             <%end%>
@@ -63,8 +63,8 @@
           <h5 class="card-title"><a href="/test/view/<%= test.id%>" style="color:black;"><%= test.title %></a></h5>
           <p class="card-text">
             <% length=test.description.length %>
-            <% if(length>50) %>
-              <%= test.description.first(50) %>....
+            <% if(length>70) %>
+              <%= test.description.first(70) %>....
             <%else%>
               <%=test.description%>
             <%end%>
