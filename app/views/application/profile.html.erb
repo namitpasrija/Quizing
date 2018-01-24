@@ -49,9 +49,7 @@
 
       <h6><b>About Me</b></h6>
 
-      <div id="about" style="padding: 5px;word-wrap: break-word;white-space: pre-wrap;">
-      <%= @user.about %>
-      </div>
+      <div id="about" style="padding: 5px;word-wrap: break-word;white-space: pre-wrap;"><%= @user.about %></div>
     </div>
 
     <div class="col-sm-6" style="padding-top: 30px; padding-left: 50px;">
@@ -68,15 +66,22 @@
     </div>
 
      <div class="col-sm-3" style="padding-top: 30px;">
-      
-      <h6><b>Participated In</b></h6>
-      <ul style="padding:5px 5px;" type="none">
-        <li><a href="#" style="text-decoration: none;">Allen Maths Quiz</a></li>
-        <li><a href="#" style="text-decoration: none;">SSC Maths Quiz</a></li>
-        <li><a href="#" style="text-decoration: none;">Data Structures Quiz </a></li>
-        <li><a href="#" style="text-decoration: none;">Allen PMT Test</a></li>
-      </ul>
-      <div style="text-align: right;"><a href="#" style="text-decoration: none;">View All</a></div>
+
+      <% @time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
+        <% @participations=Participation.where(:user_id=>params[:userid]) %>
+        <h6><b>Participated Quizes</b></h6>
+        <hr style="border-top: dotted 1px;" />
+        <ul type="none" style="padding:5px;color:#4c9cdf;">
+          <% @participations.each do |participation| %>
+            <% if participation.endingat<@time %>
+              <li>
+                <%= participation.testTitle%> 
+              </li>
+            <%end%>
+          <%end%>
+        </ul>
+
+      <!-- <div style="text-align: right;"><a href="#" style="text-decoration: none;">View All</a></div> -->
 
         <hr style="border:1px dashed #eee;margin-top: 0px;">
     </div>

@@ -1,5 +1,6 @@
 class TestsController < ApplicationController
 	before_action :authenticate_user!, only: [:new,:create,:update,:register,:environment,:changeproblem,:attempt,:destroy,:testinfo,:submit]
+	before_action :completeProfile, only: [:index]
 	@@queans=Hash.new
 
 	def index
@@ -49,12 +50,16 @@ class TestsController < ApplicationController
 
 	def register
 		@time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
-		if(Test.find_by_id(params[:testid]).endtime<@time)
+		@test=Test.find_by_id(params[:testid])
+		if(@test.endtime<@time)
 			redirect_to action: 'index'
 		end
 		@participation=Participation.new()
 		@participation.user=current_user
 		@participation.test_id=params[:testid]
+		@participation.testTitle=@test.title
+		@participation.endingat=@test.endtime
+		@participation.startingat=@test.starttime
 		@participation.save
 		redirect_to action: 'testinfo',testid: params[:testid]
 	end
@@ -93,6 +98,7 @@ class TestsController < ApplicationController
 
 		@test=params[:testid]
 		@problem=Problem.where(:testid=>@test).where(:queno=>@qno)[0]
+		
 		@attempts=Attempt.where(:user_id=>current_user.id).where(:problem_id=>@problem.id)
 		@answered=""
 		if(!@attempts.empty?)
@@ -144,6 +150,7 @@ class TestsController < ApplicationController
 			@attempt.user=current_user
 			@attempt.test_id=params[:testid]
 			@attempt.problem_id=params[:problemid]
+			@attempt.enrollmentendsat=enrollment.endsAt
 			@attempt.answered=""
 
 			params[:options][0].keys.each do |key|
@@ -174,7 +181,7 @@ class TestsController < ApplicationController
 		else
 			@attempt=@attempts.first
 			@attempt.answered=""
-			
+			@attempt.enrollmentendsat=enrollment.endsAt
 			params[:options][0].keys.each do |key|
 				@attempt.answered+=key
 				@attempt.answered+=","
@@ -246,5 +253,19 @@ class TestsController < ApplicationController
 		def set_params
 			params.require(:test).permit(:title,:description,:duration,:starttime,:endtime,:conductedby,:user_id,:fee,:prize,:instructions,:password,:ttype)
 		end
+
+		def completeProfile
+			if(!user_signed_in?)
+				return true
+			end
+
+			if((current_user.Gender.empty? || current_user.country.empty? || current_user.profession.empty? || current_user.bornon.empty?))
+				flash[:notice]="We only know a bit about you , Help us know you better. "
+				redirect_to :controller => 'application', :action => 'editprofile',:userid=>current_user.id 
+			else
+				return true
+			end
+		end
+
 end
 	

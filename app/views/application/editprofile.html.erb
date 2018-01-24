@@ -6,6 +6,12 @@
         <br/>
         <div class="row mx-auto">
           <div class="col-lg-12 ">
+            <% if(flash[:notice]) %>
+            <div id="alert" class="alert alert-warning">
+              <%= flash[:notice] %>
+            </div>
+            <%end%>
+            
             <nav aria-label="breadcrumb" role="navigation">
               <ol class="breadcrumb bg-dark text-white mx-auto">
                 <li class="breadcrumb-item mx-auto  text-white active" aria-current="page">Edit Profile</li>
@@ -63,7 +69,7 @@
 
                <div class="form-group">
                 <label for="exampleInputContact">About Me</label>
-                <textarea class="form-control" id="exampleInputContact" placeholder="Describe yourself" name="user[about]"  value="<%= @user.about%>"></textarea>
+                <textarea class="form-control" id="exampleInputContact" placeholder="Describe yourself" name="user[about]" ><%= @user.about%></textarea>
               </div>
               <br/>
 
@@ -75,7 +81,7 @@
                     <option value="Working">Working</option>
                   </select>
                 </div>
-                 <label id="profession" style="display: hidden;">Student At</label>
+                 <label id="profession" style="display: hidden;">Study/Work Place</label>
               <div class="form-row">
                 <div class="col">
                   <input type="text" class="form-control" placeholder="Working or Studying at (Company Name or Institution Name)" name="user[profession_place]" autofocus="autofocus" required="true" value="<%= @user.profession_place%>">
