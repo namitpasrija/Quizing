@@ -254,18 +254,5 @@ class TestsController < ApplicationController
 			params.require(:test).permit(:title,:description,:duration,:starttime,:endtime,:conductedby,:user_id,:fee,:prize,:instructions,:password,:ttype)
 		end
 
-		def completeProfile
-			if(!user_signed_in?)
-				return true
-			end
-
-			if((current_user.Gender.empty? || current_user.country.empty? || current_user.profession.empty? || current_user.bornon.empty?))
-				flash[:notice]="We only know a bit about you , Help us know you better. "
-				redirect_to :controller => 'application', :action => 'editprofile',:userid=>current_user.id 
-			else
-				return true
-			end
-		end
-
 end
 	
