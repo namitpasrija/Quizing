@@ -74,7 +74,7 @@
         <ul type="none" style="padding:5px;color:#4c9cdf;">
           <% @participations.each do |participation| %>
               <li>
-                <%= participation.testTitle%> 
+                <a href="/test/view/<%= participation.test_id%>" style="text-decoration: none;"><%= participation.testTitle%></a>
               </li>
             <%end%>
         </ul>

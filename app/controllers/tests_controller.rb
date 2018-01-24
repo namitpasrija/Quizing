@@ -37,6 +37,21 @@ class TestsController < ApplicationController
 		@test=Test.find_by(id: params[:testid])
 		@test.update(set_params)
 		@test.save
+
+		@attempts=Attempt.where(:test_id=>@test.id )		
+		@attempts.each do  |attempt|
+			attempt.enrollmentendsat=@test.endtime
+			attempt.save
+		end
+
+		@participations=Participation.where(:test_id=>@test.id )		
+
+		@participations.each do  |participation|
+			participation.endingat=@test.endtime
+			participation.startingat=@test.starttime
+			participation.save
+		end
+
 		redirect_to '/test/mytests'
 	end
 
