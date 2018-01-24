@@ -114,30 +114,8 @@
         <% @participations=Participation.where(:user_id=>current_user.id) %>
 
 
-        <h6><b>Registered Quizes</b></h6>
-        <hr style="border-top: dotted 1px;" />
-        <ul type="none" style="padding:5px;color:#4c9cdf;">
-          <% @participations.each do |participation| %>
-            <% if participation.endingat>@time %>
-              <li>
-                <a href="/test/view/<%= participation.test_id%>" style="text-decoration: none;"><%= participation.testTitle%></a>
-              <% if participation.startingat<@time %><span style="color:white;background:#69bd69;border-radius:20px;font-family: arial;">&nbsp;&nbsp;Ongoing&nbsp;&nbsp;</span><%end%>
-             </li>
-            <%end%>
-          <%end%>
-        </ul>
        
-       <h6><b>Participated Quizes</b></h6>
-        <hr style="border-top: dotted 1px;" />
-        <ul type="none" style="padding:5px;color:#4c9cdf;">
-          <% @participations.each do |participation| %>
-            <% if participation.endingat<@time %>
-              <li>
-                <%= participation.testTitle%> 
-              </li>
-            <%end%>
-          <%end%>
-        </ul>
+      
 
       <% end %>
 
