@@ -68,17 +68,15 @@
      <div class="col-sm-3" style="padding-top: 30px;">
 
       <% @time=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
-        <% @participations=Participation.where(:user_id=>params[:userid]) %>
-        <h6><b>Participated Quizes</b></h6>
+       <% @participations=Participation.where(:user_id=>params[:userid]).where('endingat<?',@time) %>    
+       <h6><b>Participated Quizes</b></h6>
         <hr style="border-top: dotted 1px;" />
         <ul type="none" style="padding:5px;color:#4c9cdf;">
           <% @participations.each do |participation| %>
-            <% if participation.endingat<@time %>
               <li>
                 <%= participation.testTitle%> 
               </li>
             <%end%>
-          <%end%>
         </ul>
 
       <!-- <div style="text-align: right;"><a href="#" style="text-decoration: none;">View All</a></div> -->
