@@ -123,6 +123,18 @@
              </li>
           <%end%>
         </ul>
+       <% @participations=Participation.where(:user_id=>current_user.id).where('endingat<?',@time) %>
+       
+       <h6><b>Participated Quizes</b></h6>
+        <hr style="border-top: dotted 1px;" />
+        <ul type="none" style="padding:5px;color:#4c9cdf;">
+          <% @participations.each do |participation| %>
+              <li>
+                <%= participation.testTitle%> 
+              </li>
+            <%end%>
+        </ul>
+
       <% end %>
 
        <h6><b>Quiz Type</b></h6>
