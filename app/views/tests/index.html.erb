@@ -58,12 +58,12 @@
           <h5 class="card-title"><a href="/test/view/<%= test.id%>" style="color:black;"><%= test.title %></a></h5>
           <p class="card-text">
             <% length=test.description.length %>
-            <% if(length>70) %>
-              <%= test.description.first(70) %>
+            <% if(length>50) %>
+              <%= test.description.first(50) %>....
             <%else%>
               <%=test.description%>
             <%end%>
-            
+
               <center>
                 <% @currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata')) %>
                 <% @starttime=test.starttime.to_f*1000 %>
