@@ -24,6 +24,25 @@
 			<% maxscore=enrollments[i].maxscore  %>
 			<% correct=enrollments[i].correctAnswers %>
 			<% wrong=enrollments[i].wrongAnswers %>
+			<% eff=((correct*100)/(correct+wrong)) %>
+
+			<% if score.blank? %>
+				<% score=0 %>
+			<%end%>
+			<% if maxscore.blank? %>
+				<% maxscore=0 %>
+			<%end%>
+			<% if correct.blank? %>
+				<% correct=0 %>
+			<%end%>
+			<% if wrong.blank? %>
+				<% wrong=0 %>
+			<%end%>
+
+			<% if correct==0 && wrong==0 %>
+				<% eff=0 %>
+			<%end%>
+
 
 			<%if (i%2) %>
 				<tr>
@@ -32,7 +51,7 @@
 					<td><%= score %>/<%= maxscore %></td>
 					<td><%= correct %></td>
 					<td><%= wrong %></td>
-					<td><%= ((correct*100)/(correct+wrong)) %>%</td>
+					<td><%= eff %>%</td>
 				</tr>
 			<%else%>
 				<tr class="even">
@@ -41,7 +60,7 @@
 					<td><%= score %>/<%= maxscore %></td>
 					<td><%= correct %></td>
 					<td><%= wrong %></td>
-					<td><%= ((correct*100)/(correct+wrong)) %>%</td>
+					<td><%=  eff %>%</td>
 				</tr>
 				
 				<%end%>
