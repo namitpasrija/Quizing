@@ -266,6 +266,7 @@ class TestsController < ApplicationController
 				end
 
 				@enrollments = @enrollments.sort_by!{ |k| k["score"] }
+				@enrollments=@enrollments.reverse
 			end
 			@flag=1
 		else
