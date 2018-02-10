@@ -265,9 +265,7 @@ class TestsController < ApplicationController
 					@enrollments[i].save
 				end
 
-				@enrollments =Enrollment.where(:test_id=>@test.id).order('score DESC')
-				@enrollments=@enrollments.reverse
-				@enrollments.save
+				@enrollments =@enrollments.sort_by { |a| a[score]}
 			end
 			@flag=1
 		else
