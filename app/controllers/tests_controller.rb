@@ -265,7 +265,7 @@ class TestsController < ApplicationController
 					@enrollments[i].save
 				end
 
-				@enrollments = @enrollments.sort! { |k| k["score"] }
+				@enrollments = @enrollments.sort! { |k| k['score'] }
 				@enrollments=@enrollments.reverse
 				@enrollments.save
 			end
