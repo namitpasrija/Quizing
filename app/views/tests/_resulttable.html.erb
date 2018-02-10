@@ -27,29 +27,6 @@
 				<% score=enrollments[i].score %>
 			<%end%>
 			
-			<% if enrollments[i].maxscore.blank? %>
-				<% maxscore=0 %>
-			<%else%>
-				<% maxscore=enrollments[i].maxscore%>
-			<%end%>
-
-			<% if enrollments[i].correctAnswers.blank? %>
-				<% correct=0 %>
-			<%else%>
-				<%correct=enrollments[i].correctAnswers%>
-			<%end%>
-
-			<% if enrollments[i].wrongAnswers.blank? %>
-				<% wrong=0 %>
-			<%else%>
-				<% wrong=enrollments[i].wrongAnswers %>
-			<%end%>
-
-			<% if (correct==0 && wrong==0) %>
-				<% eff=0 %>
-			<% else %>
-				<% eff=((correct*100)/(correct+wrong)) %>
-			<%end%>
 
 
 			<%if (i%2) %>
