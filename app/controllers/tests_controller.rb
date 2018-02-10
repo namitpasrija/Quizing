@@ -263,7 +263,6 @@ class TestsController < ApplicationController
 					@enrollments[i].maxscore=@maxscore
 
 					@enrollments[i].save
-					redirect_to action 'scoreboard'
 				end
 			end
 			@enrollments=Enrollment.where(:test_id=>@test.id).order('score DESC')

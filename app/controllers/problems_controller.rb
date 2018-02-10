@@ -23,10 +23,10 @@ class ProblemsController < ApplicationController
 
 	def update
 		@problem=Problem.find_by(id: params[:problemid])
-		@attempts=Attempt.where(problem_id: params[:problemid])
 		@problem.update(set_params)
 		@problem.save
 
+		@attempts=Attempt.where(problem_id: params[:problemid])
 		@computed=Computed.where(:test_id=>@problem.testid)
 		
 		if !(@computed.blank?)
@@ -43,7 +43,7 @@ class ProblemsController < ApplicationController
 				attempt.marks=marks
 			else
 				attempt.status=0
-				attempt.marks=@negativemarks
+				attempt.marks=negmarks
 			end
 			attempt.save
 		end
