@@ -23,13 +23,32 @@ class ProblemsController < ApplicationController
 
 	def update
 		@problem=Problem.find_by(id: params[:problemid])
+		@attempts=Attempt.where(problem_id: params[:problemid])
 		@problem.update(set_params)
 		@problem.save
+
+		answer=@problem.answer
+		marks=@problem.marks
+		negmarks=@problem.negativemarks
+
+		@attempts.each do |attempt|
+			if(answer+','==attempt.answered)
+				attempt.status=1
+				attempt.marks=marks
+			else
+				attempt.status=0
+				attempt.marks=@negativemarks
+			end
+			attempt.save
+		end
+
 		redirect_to '/'
 	end
 
 	def destroy
 		@problems=Problem.find_by(id: params[:problemid])
+		@attempts=Attempt.where(problem_id: params[:problemid])
+		@attempts.destroy
 		@problems.destroy
 		redirect_to '/test/mytests'
 	end
