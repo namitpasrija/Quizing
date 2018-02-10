@@ -24,19 +24,13 @@
 				<tr>
 					<td><%= i+1%></td>
 					<td><%= user.FirstName%> <%= user.LastName%></td>
-					<td><%= enrollments[i].score %>/<%= enrollments[i].maxscore %></td>
-					<td><%= enrollments[i].correctAnswers %></td>
-					<td><%= enrollments[i].wrongAnswers %></td>
-					<!-- <td><%= ((enrollments[i].correctAnswers*100)/(enrollments[i].correctAnswers+enrollments[i].wrongAnswers)) %>%</td> -->
+					
 				</tr>
 			<%else%>
 				<tr class="even">
 					<td><%= i+1 %></td>
 					<td><%= user.FirstName%> <%= user.LastName%></td>
-					<td><%= enrollments[i].score %>/<%= enrollments[i].maxscore %></td>
-					<td><%= enrollments[i].correctAnswers %></td>
-					<td><%= enrollments[i].wrongAnswers %></td>
-					<!-- <td><%= ((enrollments[i].correctAnswers*100)/(enrollments[i].correctAnswers+enrollments[i].wrongAnswers)) %>%</td> -->
+				
 				</tr>
 				
 				<%end%>
