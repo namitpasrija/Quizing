@@ -7,10 +7,10 @@
 		  <div class="card-header">
 		    <ul class="nav nav-tabs card-header-tabs">
 		    <li class="nav-item">
-		        <a class="nav-link" href="/test/instructions/?testid=1">Instructions</a>
+		        <a class="nav-link" href="/test/instructions/?testid=<%= params[:testid] %>">Instructions</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="/test/environment/?testid=1">Problems</a>
+		        <a class="nav-link" href="/test/environment/?testid=<%= params[:testid] %>">Problems</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link active" href="#">Score Board</a>
