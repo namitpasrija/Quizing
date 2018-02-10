@@ -262,11 +262,10 @@ class TestsController < ApplicationController
 					@enrollments[i].wrongAnswers=@userattempts.length-@enrollments[i].correctAnswers
 					@enrollments[i].maxscore=@maxscore
 
-
 					@enrollments[i].save
 				end
 
-				@enrollments.sort_by { |score| score }
+				@enrollments = @enrollments.sort_by { |k| k["score"] }
 			end
 			@flag=1
 		else
