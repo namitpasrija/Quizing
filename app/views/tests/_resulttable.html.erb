@@ -20,23 +20,19 @@
 			<% userid=enrollments[i].user_id %>
 			<% user=User.find_by_id(userid) %>
 
+			
+
+
 			<%if (i%2) %>
 				<tr>
 					<td><%= i+1%></td>
 					<td><%= user.FirstName %> <%= user.LastName%></td>
-					<!-- <td><%= score %>/<%= maxscore %></td> -->
-					<!-- <td><%= correct %></td> -->
-					<!-- <td><%= wrong %></td> -->
-					<!-- <td><%= eff %>%</td> -->
 				</tr>
 			<%else%>
 				<tr class="even">
 					<td><%= i+1%></td>
 					<td><%= user.FirstName %> <%= user.LastName%></td>
-					<!-- <td><%= score %>/<%= maxscore %></td> -->
-					<!-- <td><%= correct %></td> -->
-					<!-- <td><%= wrong %></td> -->
-					<!-- <td><%=  eff %>%</td> -->
+
 				</tr>
 				
 				<%end%>
