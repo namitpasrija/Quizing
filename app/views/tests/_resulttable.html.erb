@@ -20,15 +20,6 @@
 			<% userid=enrollments[i].user_id %>
 			<% user=User.find_by_id(userid) %>
 
-	
-			<% if enrollments[i].score.blank? %>
-				<% score=0 %>
-			<%else%>
-				<% score=enrollments[i].score %>
-			<%end%>
-			
-
-
 			<%if (i%2) %>
 				<tr>
 					<td><%= i+1%></td>
