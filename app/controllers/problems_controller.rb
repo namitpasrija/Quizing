@@ -28,8 +28,10 @@ class ProblemsController < ApplicationController
 		@problem.save
 
 		@computed=Computed.where(:test_id=>@problem.testid)
+		
 		if !(@computed.blank?)
-			@computed.destroy
+			@computed.destroy_all
+		end
 
 		answer=@problem.answer
 		marks=@problem.marks
@@ -50,14 +52,16 @@ class ProblemsController < ApplicationController
 	end
 
 	def destroy
-		@problem=Problem.find_by(id: params[:problemid])
+		@problems=Problem.find_by(id: params[:problemid])
 		@attempts=Attempt.where(problem_id: params[:problemid])
 		@computed=Computed.where(:test_id=>@problem.testid)
+		
 		if !(@computed.blank?)
-			@computed.destroy
-		@computed.destroy
+			@computed.destroy_all
+		end
+
 		@attempts.destroy
-		@problem.destroy
+		@problems.destroy
 		redirect_to '/test/mytests'
 	end
 	
