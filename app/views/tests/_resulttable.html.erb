@@ -54,7 +54,7 @@
 			<%if (i%2) %>
 				<tr>
 					<td><%= i+1%></td>
-					<td><%= user.FirstName %> <%= user.LastName%></td>
+					<td><a href="/user/<%= user.id %>"><%= user.FirstName %> <%= user.LastName%></a></td>
 					<td><%= score %>/<%= maxscore %></td>
 					<td><%= correct %></td>
 					<td><%= wrong %></td>
@@ -63,7 +63,7 @@
 			<%else%>
 				<tr class="even">
 					<td><%= i+1%></td>
-					<td><%= user.FirstName %> <%= user.LastName%></td>
+					<td><a href="/user/<%= user.id %>"><%= user.FirstName %> <%= user.LastName%></a></td>
 					<td><%= score %>/<%= maxscore %></td>
 					<td><%= correct %></td>
 					<td><%= wrong %></td>
