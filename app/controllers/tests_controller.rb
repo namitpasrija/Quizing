@@ -245,7 +245,7 @@ class TestsController < ApplicationController
 	def scoreboard
 		@test=Test.find_by_id(params[:testid])
 		@currenttime=Time.now.in_time_zone(TZInfo::Timezone.get('Asia/Kolkata'))
-		@enrollments=Enrollment.where(:test_id=>@test.id)
+		@enrollments=Enrollment.where(:test_id=>@test.id).order('marks DESC')
 		@problems=Problem.where(:testid=>@test.id)
 
 		if(@currenttime>@test.endtime)
