@@ -249,6 +249,7 @@ class TestsController < ApplicationController
 
 		if(@currenttime>@test.endtime)
 			if(Computed.where(:test_id=>@test.id).empty?)
+				@enrollments=Enrollment.where(:test_id=>@test.id)
 				computed=Computed.create(test_id: @test.id)
 				@maxscore=@problems.sum(:marks)
 				
@@ -262,6 +263,7 @@ class TestsController < ApplicationController
 					@enrollments[i].maxscore=@maxscore
 
 					@enrollments[i].save
+					redirect_to action 'scoreboard'
 				end
 			end
 			@enrollments=Enrollment.where(:test_id=>@test.id).order('score DESC')
