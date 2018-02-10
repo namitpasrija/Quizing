@@ -24,7 +24,7 @@
 			<% maxscore=enrollments[i].maxscore  %>
 			<% correct=enrollments[i].correctAnswers %>
 			<% wrong=enrollments[i].wrongAnswers %>
-			<% eff=((correct*100)/(correct+wrong)) %>
+	
 
 			<% if score.blank? %>
 				<% score=0 %>
@@ -41,6 +41,8 @@
 
 			<% if correct==0 && wrong==0 %>
 				<% eff=0 %>
+			<% else %>
+				<% eff=((correct*100)/(correct+wrong)) %>
 			<%end%>
 
 
