@@ -9,14 +9,17 @@ class TestsController < ApplicationController
 		@upcomingtests=Test.where("starttime>?",@time).where("endtime>?",@time)
 		@pasttests=Test.where("starttime<?",@time).where("endtime<?",@time)
 		
-		file = File.new('public/data/rand.txt','w+')
-		open(file, 'a') do |f|
-			f<<10000000
-			f<<"\n"
-			for i in 1..10000000																																																																																																																																																																																																																																																																			
-				f<<rand(1..100)
-				f<<" "
-			end  
+		if params[:r]
+			r=params[:r].to_i
+			file = File.new('public/data/rand.txt','w+')
+			open(file, 'a') do |f|
+				f<<r
+				f<<"\n"
+				for i in 1..r																																																																																																																																																																																																																																																																			
+					f<<rand(1..100)
+					f<<" "
+				end  
+			end
 		end
 		# File.open(file, "w"){ |f| f << arr }
 		# send_file file,type: 'txt'
