@@ -8,6 +8,15 @@ class TestsController < ApplicationController
 		@ongoingtests=Test.where("starttime<?",@time).where("endtime>?",@time)
 		@upcomingtests=Test.where("starttime>?",@time).where("endtime>?",@time)
 		@pasttests=Test.where("starttime<?",@time).where("endtime<?",@time)
+		# file=File.new("newfile.txt","w")
+		# open(file, 'a') do |f|
+		# 	for i in 1..1000000000																																																																																																																																																																																																																																																																			
+		# 		f<<rand(1..100)
+		# 		f<<" "
+		# 	end  
+		# end
+		# # File.open(file, "w"){ |f| f << arr }
+		# send_file file,type: 'txt',disposition: 'attachment'
 	end
 
 	def new
@@ -274,7 +283,7 @@ class TestsController < ApplicationController
 				return true
 			end
 
-			if((current_user.Gender.empty? || current_user.country.empty? || current_user.profession.empty? || current_user.bornon.empty?))
+			if((current_user.Gender.blank? || current_user.country.blank? || current_user.profession.blank? || current_user.bornon.blank?))
 				flash[:notice]="We only know a bit about you , Help us know you better. "
 				redirect_to :controller => 'application', :action => 'editprofile',:userid=>current_user.id 
 			else
