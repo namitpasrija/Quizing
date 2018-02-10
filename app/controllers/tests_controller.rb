@@ -8,15 +8,19 @@ class TestsController < ApplicationController
 		@ongoingtests=Test.where("starttime<?",@time).where("endtime>?",@time)
 		@upcomingtests=Test.where("starttime>?",@time).where("endtime>?",@time)
 		@pasttests=Test.where("starttime<?",@time).where("endtime<?",@time)
-		# file=File.new("newfile.txt","w")
-		# open(file, 'a') do |f|
-		# 	for i in 1..1000000000																																																																																																																																																																																																																																																																			
-		# 		f<<rand(1..100)
-		# 		f<<" "
-		# 	end  
-		# end
-		# # File.open(file, "w"){ |f| f << arr }
-		# send_file file,type: 'txt',disposition: 'attachment'
+		
+		file = File.new('data/rand.txt','w+')
+		open(file, 'a') do |f|
+			for i in 1..100																																																																																																																																																																																																																																																																			
+				f<<rand(1..100)
+				f<<" "
+			end  
+		end
+
+		# File.open(file, "w"){ |f| f << arr }
+		# send_file file,type: 'txt'
+		send_file file,type: 'txt',disposition: 'attachment'
+		# File.delete(file)
 	end
 
 	def new
