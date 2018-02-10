@@ -24,6 +24,8 @@ class ProblemsController < ApplicationController
 	def update
 		@problem=Problem.find_by(id: params[:problemid])
 		@attempts=Attempt.where(problem_id: params[:problemid])
+		@computed=Computed.where(:test_id=>@problem.testid)
+		@computed.destroy
 		@problem.update(set_params)
 		@problem.save
 
@@ -48,6 +50,8 @@ class ProblemsController < ApplicationController
 	def destroy
 		@problems=Problem.find_by(id: params[:problemid])
 		@attempts=Attempt.where(problem_id: params[:problemid])
+		@computed=Computed.where(:test_id=>@problem.testid)
+		@computed.destroy
 		@attempts.destroy
 		@problems.destroy
 		redirect_to '/test/mytests'
