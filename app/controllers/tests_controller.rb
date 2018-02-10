@@ -265,7 +265,7 @@ class TestsController < ApplicationController
 					@enrollments[i].save
 				end
 
-				@enrollments =@enrollments.sort_by { |a| a.score }
+				@enrollments =@enrollments.sort_by { |a| a[score] }
 			end
 			@flag=1
 		else
