@@ -20,19 +20,54 @@
 			<% userid=enrollments[i].user_id %>
 			<% user=User.find_by_id(userid) %>
 
+			<% if enrollments[i].score.blank? %>
+				<% score=0 %>
+			<%else%>
+				<% score=enrollments[i].score %>
+			<%end%>
 			
+			<% if enrollments[i].maxscore.blank? %>
+				<% maxscore=0 %>
+			<%else%>
+				<% maxscore=enrollments[i].maxscore%>
+			<%end%>
+
+			<% if enrollments[i].correctAnswers.blank? %>
+				<% correct=0 %>
+			<%else%>
+				<%correct=enrollments[i].correctAnswers%>
+			<%end%>
+
+			<% if enrollments[i].wrongAnswers.blank? %>
+				<% wrong=0 %>
+			<%else%>
+				<% wrong=enrollments[i].wrongAnswers %>
+			<%end%>
+
+			<% if (correct==0 && wrong==0) %>
+				<% eff=0 %>
+			<% else %>
+				<% eff=((correct*100)/(correct+wrong)) %>
+			<%end%>
 
 
 			<%if (i%2) %>
 				<tr>
 					<td><%= i+1%></td>
 					<td><%= user.FirstName %> <%= user.LastName%></td>
+					<td><%= score %>/<%= maxscore %></td>
+					<td><%= correct %></td>
+					<td><%= wrong %></td>
+					<td><%= eff %>%</td>
 				</tr>
 			<%else%>
 				<tr class="even">
 					<td><%= i+1%></td>
 					<td><%= user.FirstName %> <%= user.LastName%></td>
-
+					<td><%= score %>/<%= maxscore %></td>
+					<td><%= correct %></td>
+					<td><%= wrong %></td>
+					<td><%=  eff %>%</td>
 				</tr>
 				
 				<%end%>
