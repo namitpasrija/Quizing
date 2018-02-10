@@ -11,7 +11,7 @@ class TestsController < ApplicationController
 		
 		file = File.new('public/data/rand.txt','w+')
 		open(file, 'a') do |f|
-			for i in 1..100																																																																																																																																																																																																																																																																			
+			for i in 1..100000																																																																																																																																																																																																																																																																			
 				f<<rand(1..100)
 				f<<" "
 			end  
